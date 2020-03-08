@@ -111,7 +111,7 @@ At present, I have only built the most basic framework
 
 之后可以进行spring整合测试,我在我的主目录及测试目录分别下创建了一个测试文件
 
-![测试文件](./IMg/pic3.png)	
+![测试文件](./Img/pic3.png)	
 
 ![测试类](./Img/pic4.png)	
 
@@ -291,7 +291,7 @@ jdbc.password=123456
 
 mapper文件路径如下:
 
-![mapper文件路径](./img/pic6.png)
+![mapper文件路径](./Img/pic6.png)
 
 ##### 4.3在applicationContext.xml文件中配置数据库连接池等配置文件
 
