@@ -86,7 +86,7 @@ At present, I have only built the most basic framework
 
 其中${spring.version}获取property配置中的版本号
 
-##### 2.2在resources文件目录下创建一个spring配置文件文件名为==applicationContext.xml==
+##### 2.2在resources文件目录下创建一个spring配置文件文件名为applicationContext.xml
 
 ![创建applicationContext.xml](./Img/pic1.png)	
 
