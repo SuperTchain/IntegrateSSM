@@ -16,5 +16,11 @@ public class test {
 //        调用方法
         ts.pringtHello();
     }
+
+    @Test
+    public  void sayHello(){
+        System.out.println("是不是乱码");
+    }
+
 }
 

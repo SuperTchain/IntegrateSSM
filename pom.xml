@@ -171,7 +171,18 @@
                 </includes>
                 <filtering>false</filtering>
             </resource>
+
+<!--            <resource>-->
+<!--            <directory>src/main/java</directory>-->
+<!--            <includes>-->
+<!--                <include>**/*.*</include>-->
+<!--            </includes>-->
+<!--            <excludes>-->
+<!--                <exclude>**/*.java</exclude>-->
+<!--            </excludes>-->
+<!--            </resource>-->
         </resources>
+
 
         <finalName>webpj1</finalName>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
