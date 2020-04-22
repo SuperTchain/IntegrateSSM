@@ -4,9 +4,25 @@ import java.io.Serializable;
 
 
 public class User implements Serializable {
-   private  Integer id;
-   private  String name;
-   private  Integer number;
+    /**
+     * 主键
+     */
+    private Integer id;
+    /**
+     * 用户Id
+     */
+    private String name;
+    /**
+     * 数量
+     */
+    private Integer number;
+
+    /**
+     * 用户密码
+     *
+     * @return
+     */
+    private String password;
 
     @Override
     public String toString() {
@@ -14,7 +30,16 @@ public class User implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", number=" + number +
+                ", password='" + password + '\'' +
                 '}';
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Integer getId() {

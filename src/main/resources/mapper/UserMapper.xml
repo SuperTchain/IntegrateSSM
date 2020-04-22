@@ -6,4 +6,12 @@
     <select id="findAll" resultType="com.lx.model.User">
         select * from test_table
     </select>
+
+    <insert id="addUser">
+        insert into test_table(name, number, password) values (#{username},#{number},#{password})
+    </insert>
+
+    <select id="findUserByName" resultType="com.lx.model.User">
+        select * from test_table where username=#{username}
+    </select>
 </mapper>
