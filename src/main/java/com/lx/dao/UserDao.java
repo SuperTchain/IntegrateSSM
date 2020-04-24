@@ -1,6 +1,7 @@
 package com.lx.dao;
 
 import com.lx.model.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,7 +26,9 @@ public interface UserDao {
     void addUser(User user);
 
     /**
-     * 根据username查询用户
+     * 根据id查询
+     * @param username
+     * @return
      */
     User findUserByName(String username);
 

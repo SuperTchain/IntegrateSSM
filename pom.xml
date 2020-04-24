@@ -24,6 +24,10 @@
         <druid.version>1.1.20</druid.version>
         <mybatis.version>3.4.6</mybatis.version>
         <mybatis-spring.version>2.0.2</mybatis-spring.version>
+        <mybatis-plus-generator.version>3.3.1</mybatis-plus-generator.version>
+        <freemarker.version>2.3.23</freemarker.version>
+        <slf4j.version>1.6.6</slf4j.version>
+        <log4j.version>1.2.12</log4j.version>
     </properties>
 
     <dependencies>
@@ -124,7 +128,7 @@
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
-            <version>1.2</version>
+            <version>${jstl.version}</version>
         </dependency>
 
         <!--mybatis配置-->
@@ -163,11 +167,40 @@
             <version>${mybatis-spring.version}</version>
         </dependency>
 
+        <!--mybatisPlus逆向工程-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>${mybatis-plus-generator.version}</version>
+        </dependency>
+        <!--默认模板引擎-->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>${freemarker.version}</version>
+        </dependency>
+        <!--日志模块-->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <!--mybatisPlus逆向工程         结束        -->
 
     </dependencies>
 
     <build>
-<!--        配置mapper文件-->
+        <!--        配置mapper文件-->
         <resources>
             <resource>
                 <directory>src/main/java</directory>
@@ -178,15 +211,15 @@
                 <filtering>false</filtering>
             </resource>
 
-<!--            <resource>-->
-<!--            <directory>src/main/java</directory>-->
-<!--            <includes>-->
-<!--                <include>**/*.*</include>-->
-<!--            </includes>-->
-<!--            <excludes>-->
-<!--                <exclude>**/*.java</exclude>-->
-<!--            </excludes>-->
-<!--            </resource>-->
+            <!--            <resource>-->
+            <!--            <directory>src/main/java</directory>-->
+            <!--            <includes>-->
+            <!--                <include>**/*.*</include>-->
+            <!--            </includes>-->
+            <!--            <excludes>-->
+            <!--                <exclude>**/*.java</exclude>-->
+            <!--            </excludes>-->
+            <!--            </resource>-->
         </resources>
 
 

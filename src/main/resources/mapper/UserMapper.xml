@@ -4,14 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lx.dao.UserDao">
     <select id="findAll" resultType="com.lx.model.User">
-        select * from test_table
+        select * from user
     </select>
 
-    <insert id="addUser">
-        insert into test_table(name, number, password) values (#{username},#{number},#{password})
+    <insert id="addUser" parameterType="com.lx.model.User">
+        insert into user (name,password,userdesc,address,phonenumber,emailaddress,hobbys) values(#{name},#{password},#{userdesc},#{address},#{phonenumber},#{emailaddress},#{hobbys})
     </insert>
 
     <select id="findUserByName" resultType="com.lx.model.User">
-        select * from test_table where username=#{username}
+        select * from user where name=#{username}
     </select>
 </mapper>
