@@ -10,7 +10,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>user-list</title>
+    <title>用户列表界面t</title>
 </head>
 <body>
 <table>
@@ -38,8 +38,8 @@
             <td>${user.phonenumber}</td>
             <td>${user.emailaddress}</td>
             <td>${user.hobbys}</td>
-            <td><a href="">修改</a></td>
-            <td><a href="">删除</a></td>
+            <td><a href="${pageContext.request.contextPath}/user/edit?id=${user.id}">修改</a></td>
+            <td><a href="${pageContext.request.contextPath}/user/delete?id=${user.id}">删除</a></td>
         </tr>
     </c:forEach>
     </tbody>

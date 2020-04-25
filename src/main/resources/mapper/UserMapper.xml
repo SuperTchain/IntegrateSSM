@@ -14,4 +14,16 @@
     <select id="findUserByName" resultType="com.lx.model.User">
         select * from user where name=#{username}
     </select>
+
+    <select id="findUserById" resultType="com.lx.model.User">
+        select * from user where id=#{id}
+    </select>
+
+    <update id="updateUserMsg" parameterType="com.lx.model.User">
+        update user set password=#{password},userdesc=#{userdesc},address=#{address},phonenumber=#{phonenumber},emailaddress=#{emailaddress},hobbys=#{hobbys} where id=#{id}
+    </update>
+
+    <delete id="deleteUserMsg">
+        delete from user where id=#{id}
+    </delete>
 </mapper>
