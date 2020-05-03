@@ -11,7 +11,7 @@
     <title>添加用户界面</title>
 </head>
 <body>
-<form method="post" action="${pageContext.request.contextPath}/user/addUser" >
+<form method="post" action="${pageContext.request.contextPath}/user/addUser">
     用户名<input type="text" name="name">
     <br>
     密码<input type="password" name="password">
@@ -30,8 +30,13 @@
     <input type="checkbox" name="hobbys" value="看电视">看电视
     <input type="checkbox" name="hobbys" value="其他">其他
     <br>
+    性别
+    <br>
+    <input type="radio" value="男" name="gender">男
+    <input type="radio" value="女" name="gender">女
+    <br>
     <button type="submit">提交</button>
 </form>
-<button onclick="location.href='${pageContext.request.contextPath}/views/main.jsp'">返回主界面</button>
+<a href="/user/returnMain">返回主界面</a>
 </body>
 </html>

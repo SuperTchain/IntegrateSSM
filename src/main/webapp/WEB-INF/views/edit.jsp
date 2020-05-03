@@ -10,10 +10,10 @@
 <html>
 <head>
     <title>修改信息界面</title>
-    <script type="text/javascript" src="../static/js/jquery-3.3.1/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../../static/js/jquery-3.3.1/jquery-3.3.1.js"></script>
     <script type="text/javascript">
         $(function () {
-            //获取传入的所有的值
+            //复选框:获取传入的所有的值
             var allBoxObj = $("#allhobbys").val();
             //拆分字符串
             var checkArray = allBoxObj.split(',');
@@ -29,13 +29,20 @@
                     }
                 })
             }
+
+            //单选框 获取性别的值
+            var genderValue = $("#genderValue").val();
+            //获取所有选择框
+            var allGender = $("input[name='gender']");
+            //比较
+            genderValue == '男' ? $("input[name='gender']:first").attr("checked", true) : $("input[name='gender']:last").attr("checked", true)
         })
     </script>
 </head>
 <body>
 <form action="${pageContext.request.contextPath}/user/update" method="post">
     <label>用户ID</label>
-    <input name="id" value="${user.id}">
+    <input name="id" value="${user.id}" readonly="readonly">
     <br>
     <label>用户姓名</label>
     <input name="name" value="${user.name}">
@@ -57,14 +64,22 @@
     <br>
     <label>用户爱好</label>
     <input type="hidden" id="allhobbys" value="${user.hobbys}">
+    <input type="hidden" id="genderValue" value="${user.gender}">
     <br>
     <input type="checkbox" name="hobbys" value="听歌">听歌
     <input type="checkbox" name="hobbys" value="玩游戏">玩游戏
     <input type="checkbox" name="hobbys" value="看电视">看电视
     <input type="checkbox" name="hobbys" value="其他">其他
     <br>
+    <label>用户注册时间</label>
+    <input name="registdate" value="${user.registdateToStr}" readonly="readonly">
+    <br>
+    <label>用户性别</label>
+    <input type="radio" name="gender" value="男">男
+    <input type="radio" name="gender" value="女">女
+    <br>
     <button id="update" type="submit">修改</button>
 </form>
-<button onclick="location.href='${pageContext.request.contextPath}/views/main.jsp'">返回主界面</button>
+<a href="/user/returnMain">返回主界面</a>
 </body>
 </html>

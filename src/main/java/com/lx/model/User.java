@@ -1,5 +1,9 @@
 package com.lx.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.lx.utils.DateUtils;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.sql.Blob;
 import java.util.Date;
@@ -28,7 +32,14 @@ public class User implements Serializable {
     /**
      * 用户注册日期
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date registdate;
+
+    /**
+     * 将将date转化为String显示在页面上
+     */
+    private String registdateToStr;
     /**
      * 用户注册地址
      */
@@ -50,6 +61,11 @@ public class User implements Serializable {
      */
     private String hobbys;
 
+    /**
+     * 用户性别
+     */
+    private String gender;
+
     @Override
     public String toString() {
         return "User{" +
@@ -58,14 +74,15 @@ public class User implements Serializable {
                 ", password='" + password + '\'' +
                 ", userdesc='" + userdesc + '\'' +
                 ", registdate=" + registdate +
+                ", registdateToStr='" + registdateToStr + '\'' +
                 ", address='" + address + '\'' +
                 ", chathead=" + chathead +
                 ", phonenumber='" + phonenumber + '\'' +
                 ", emailaddress='" + emailaddress + '\'' +
                 ", hobbys='" + hobbys + '\'' +
+                ", gender='" + gender + '\'' +
                 '}';
     }
-
 
     public Integer getId() {
         return id;
@@ -145,5 +162,24 @@ public class User implements Serializable {
 
     public void setUserdesc(String userdesc) {
         this.userdesc = userdesc;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getRegistdateToStr() {
+        if (registdate != null) {
+            registdateToStr = DateUtils.dateToStr(registdate, "yyyy-MM-dd HH:mm:ss");
+        }
+        return registdateToStr;
+    }
+
+    public void setRegistdateToStr(String registdateToStr) {
+        this.registdateToStr = registdateToStr;
     }
 }

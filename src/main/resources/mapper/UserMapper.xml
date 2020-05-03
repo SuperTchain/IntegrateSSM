@@ -4,26 +4,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lx.dao.UserDao">
     <select id="findAll" resultType="com.lx.model.User">
-        select * from user
+        select id,name,password,userdesc,registdate,address,phonenumber,emailaddress,hobbys,gender from user
     </select>
 
     <insert id="addUser" parameterType="com.lx.model.User">
-        insert into user (name,password,userdesc,address,phonenumber,emailaddress,hobbys) values(#{name},#{password},#{userdesc},#{address},#{phonenumber},#{emailaddress},#{hobbys})
+        insert into user (name,password,userdesc,address,phonenumber,emailaddress,hobbys,registdate,gender) values(#{name},#{password},#{userdesc},#{address},#{phonenumber},#{emailaddress},#{hobbys},now(),#{gender})
     </insert>
 
     <select id="findUserByName" resultType="com.lx.model.User">
-        select * from user where name=#{username}
+        select id,name,password,userdesc,registdate,address,phonenumber,emailaddress,hobbys,gender from user where name=#{username}
     </select>
 
     <select id="findUserById" resultType="com.lx.model.User">
-        select * from user where id=#{id}
+        select id,name,password,userdesc,registdate,address,phonenumber,emailaddress,hobbys,gender from user where id=#{id}
     </select>
 
     <update id="updateUserMsg" parameterType="com.lx.model.User">
-        update user set password=#{password},userdesc=#{userdesc},address=#{address},phonenumber=#{phonenumber},emailaddress=#{emailaddress},hobbys=#{hobbys} where id=#{id}
+        update user set password=#{password},userdesc=#{userdesc},address=#{address},phonenumber=#{phonenumber},emailaddress=#{emailaddress},hobbys=#{hobbys},gender=#{gender} where id=#{id}
     </update>
 
     <delete id="deleteUserMsg">
         delete from user where id=#{id}
     </delete>
+
+    <insert id="userRegister" parameterType="com.lx.model.User">
+        insert into user (name, password,registdate, emailaddress) values (#{name},#{password},now(),#{emailaddress})
+    </insert>
 </mapper>

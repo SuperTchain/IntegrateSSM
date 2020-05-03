@@ -9,7 +9,8 @@
 <html>
 <head>
     <title>登录</title>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.3.1/jquery-3.3.1.js"></script>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath}/static/js/jquery-3.3.1/jquery-3.3.1.js"></script>
     <script type="text/javascript">
         $(function () {
             //获取提交按钮
@@ -37,19 +38,26 @@
                     return false;
                 }
 
-                //清楚错误信息
+                //清除错误信息
                 $("#errorMsg").text("");
             })
         })
     </script>
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/user/login" method="post" autocomplete="off">
-    用户名:<input type="text" name="username" id="uname"><span id="errorMsg"></span>
+<form action="${pageContext.request.contextPath}/login" method="post" autocomplete="off">
+    <label>用户名:</label>
+    <input type="text" name="username" id="uname"><span id="errorMsg"></span>
     <br>
-    密码:<input type="password" name="password" id="upassword">
+    <label>密码:</label>
+    <input type="password" name="password" id="upassword">
     <br>
-    <button type="submit" id="bt1">提交</button>
+    <button type="submit" id="bt1">登录</button>
 </form>
+<br>
+<span>
+        <a href="${pageContext.request.contextPath}/register">注册</a>
+        <a>忘记密码？</a>
+    </span>
 </body>
 </html>

@@ -19,21 +19,15 @@ public interface UserDao {
 
     /**
      * 添加用户
+     *
      * @param user 用户信息
      * @return 返回int型操作记录
      */
     int addUser(User user);
 
     /**
-     * 根据用户名查询用户信息
-     * @param username 用户名称
-     * @return 用户信息
-     */
-    User findUserByName(String username);
-
-
-    /**
      * 根据用户id查询
+     *
      * @param id 用户id
      * @return 返回一个用户信息
      */
@@ -41,6 +35,7 @@ public interface UserDao {
 
     /**
      * 更新用户信息
+     *
      * @param user 用户信息
      * @return 返回int型操作记录条数
      */
@@ -48,8 +43,17 @@ public interface UserDao {
 
     /**
      * 根据用户id进行删除
+     *
      * @param id 用户id
      * @return 返回int型操作记录条数
      */
     int deleteUserMsg(Integer id);
+
+    /**
+     * 用户注册
+     *
+     * @param user 用户类型
+     * @return 返回操作记录条数
+     */
+    int userRegister(User user);
 }
