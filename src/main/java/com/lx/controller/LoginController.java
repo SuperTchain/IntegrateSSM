@@ -48,6 +48,7 @@ public class LoginController {
             if (userByName != null && userByName.getPassword().equals(password)) {
                 //将用户名放入Model
                 session.setAttribute("username", userByName.getName());
+                session.setAttribute("userHead",userByName.getImg());
                 logger.info("登录成功");
                 return "main";
             }

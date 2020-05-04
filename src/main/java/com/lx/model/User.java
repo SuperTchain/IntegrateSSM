@@ -3,6 +3,7 @@ package com.lx.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.lx.utils.DateUtils;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.Serializable;
 import java.sql.Blob;
@@ -47,7 +48,11 @@ public class User implements Serializable {
     /**
      * 用户头像
      */
-    private Blob chathead;
+    private String img;
+    /**
+     * 上传文件
+     */
+    private MultipartFile file;
     /**
      * 用户电话号码
      */
@@ -66,6 +71,7 @@ public class User implements Serializable {
      */
     private String gender;
 
+
     @Override
     public String toString() {
         return "User{" +
@@ -76,12 +82,29 @@ public class User implements Serializable {
                 ", registdate=" + registdate +
                 ", registdateToStr='" + registdateToStr + '\'' +
                 ", address='" + address + '\'' +
-                ", chathead=" + chathead +
+                ", img='" + img + '\'' +
+                ", file=" + file +
                 ", phonenumber='" + phonenumber + '\'' +
                 ", emailaddress='" + emailaddress + '\'' +
                 ", hobbys='" + hobbys + '\'' +
                 ", gender='" + gender + '\'' +
                 '}';
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
 
     public Integer getId() {
@@ -124,13 +147,6 @@ public class User implements Serializable {
         this.address = address;
     }
 
-    public Blob getChathead() {
-        return chathead;
-    }
-
-    public void setChathead(Blob chathead) {
-        this.chathead = chathead;
-    }
 
     public String getPhonenumber() {
         return phonenumber;

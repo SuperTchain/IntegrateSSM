@@ -28,6 +28,6 @@
     </delete>
 
     <insert id="userRegister" parameterType="com.lx.model.User">
-        insert into user (name, password,registdate, emailaddress) values (#{name},#{password},now(),#{emailaddress})
+        insert into user (name, password,registdate, emailaddress,img) values (#{name},#{password},now(),#{emailaddress},#{img})
     </insert>
 </mapper>

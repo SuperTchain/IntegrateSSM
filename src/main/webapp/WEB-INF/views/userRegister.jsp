@@ -61,7 +61,7 @@
     </script>
 </head>
 <body>
-<form method="post" action="${pageContext.request.contextPath}/user/register" autocomplete="on">
+<form method="post" action="${pageContext.request.contextPath}/user/register" autocomplete="on" enctype="multipart/form-data">
     <label>用户名:</label>
     <br>
     <input type="text" name="name" id="registerName"><span id="errorMsg"></span>
@@ -77,6 +77,8 @@
     <label>邮箱:</label>
     <br>
     <input type="email" name="emailaddress" id="email">
+    <br>
+    <label>添加头像:</label><input type="file" name="file">
     <br>
     <button type="submit" id="bt1">注册</button>
 </form>
