@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -71,6 +72,11 @@ public class User implements Serializable {
      */
     private String gender;
 
+    /**
+     * 用户地址
+     */
+    private UserAddress addressesList;
+
 
     @Override
     public String toString() {
@@ -88,7 +94,16 @@ public class User implements Serializable {
                 ", emailaddress='" + emailaddress + '\'' +
                 ", hobbys='" + hobbys + '\'' +
                 ", gender='" + gender + '\'' +
+                ", addressesList=" + addressesList +
                 '}';
+    }
+
+    public UserAddress getAddressesList() {
+        return addressesList;
+    }
+
+    public void setAddressesList(UserAddress addressesList) {
+        this.addressesList = addressesList;
     }
 
     public String getImg() {

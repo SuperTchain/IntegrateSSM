@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @author lx
  */
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService {
     /**
      * 引入dao接口

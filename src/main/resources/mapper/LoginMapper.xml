@@ -4,6 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lx.dao.LoginDao">
     <select id="findUserByName" resultType="com.lx.model.User">
-        select id,name,password,userdesc,registdate,address,phonenumber,emailaddress,hobbys,gender,img from user where name=#{username}
+        select id,name,password,userdesc,registdate,phonenumber,emailaddress,hobbys,gender,img from user where name=#{username}
     </select>
 </mapper>

@@ -48,7 +48,7 @@
             <td>${user.password}</td>
             <td>${user.userdesc}</td>
             <td>${user.registdateToStr}</td>
-            <td>${user.address}</td>
+            <td>${user.addressesList.homeaddress}</td>
             <td>${user.phonenumber}</td>
             <td>${user.emailaddress}</td>
             <td>${user.hobbys}</td>

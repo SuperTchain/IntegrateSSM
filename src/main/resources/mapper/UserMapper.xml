@@ -3,30 +3,52 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lx.dao.UserDao">
-    <select id="findAll" resultType="com.lx.model.User">
-        select id,name,password,userdesc,registdate,address,phonenumber,emailaddress,hobbys,gender from user
+    <!--查询所有用户信息-->
+    <select id="findAll" resultMap="findAllMsg">
+        select id,name,password,userdesc,registdate,phonenumber,emailaddress,hobbys,gender from user
     </select>
 
+    <resultMap id="findAllMsg" type="com.lx.model.User">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="password" property="password"></result>
+        <result column="userdesc" property="userdesc"></result>
+        <result column="registdate" property="registdate"></result>
+        <result column="phonenumber" property="phonenumber"></result>
+        <result column="emailaddress" property="emailaddress"></result>
+        <result column="hobbys" property="hobbys"></result>
+        <result column="gender" property="gender"></result>
+        <association property="addressesList" select="com.lx.dao.UserAddressDao.findAllAddress" column="id"
+                     fetchType="lazy">
+        </association>
+    </resultMap>
+
+    <!--添加用户-->
     <insert id="addUser" parameterType="com.lx.model.User">
-        insert into user (name,password,userdesc,address,phonenumber,emailaddress,hobbys,registdate,gender) values(#{name},#{password},#{userdesc},#{address},#{phonenumber},#{emailaddress},#{hobbys},now(),#{gender})
+        insert into user (name,password,userdesc,phonenumber,emailaddress,hobbys,registdate,gender) values(#{name},#{password},#{userdesc},#{phonenumber},#{emailaddress},#{hobbys},now(),#{gender})
     </insert>
 
+    <!--根据用户名进行查询-->
     <select id="findUserByName" resultType="com.lx.model.User">
-        select id,name,password,userdesc,registdate,address,phonenumber,emailaddress,hobbys,gender from user where name=#{username}
+        select id,name,password,userdesc,registdate,phonenumber,emailaddress,hobbys,gender from user where name=#{username}
     </select>
 
+    <!--根据id进行查询-->
     <select id="findUserById" resultType="com.lx.model.User">
-        select id,name,password,userdesc,registdate,address,phonenumber,emailaddress,hobbys,gender from user where id=#{id}
+        select id,name,password,userdesc,registdate,phonenumber,emailaddress,hobbys,gender from user where id=#{id}
     </select>
 
+    <!--更新信息-->
     <update id="updateUserMsg" parameterType="com.lx.model.User">
-        update user set password=#{password},userdesc=#{userdesc},address=#{address},phonenumber=#{phonenumber},emailaddress=#{emailaddress},hobbys=#{hobbys},gender=#{gender} where id=#{id}
+        update user set password=#{password},userdesc=#{userdesc},phonenumber=#{phonenumber},emailaddress=#{emailaddress},hobbys=#{hobbys},gender=#{gender} where id=#{id}
     </update>
 
+    <!--删除信息-->
     <delete id="deleteUserMsg">
         delete from user where id=#{id}
     </delete>
 
+    <!--用户注册-->
     <insert id="userRegister" parameterType="com.lx.model.User">
         insert into user (name, password,registdate, emailaddress,img) values (#{name},#{password},now(),#{emailaddress},#{img})
     </insert>

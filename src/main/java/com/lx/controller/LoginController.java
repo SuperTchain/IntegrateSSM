@@ -1,5 +1,6 @@
 package com.lx.controller;
 
+import com.lx.annotation.LogAnnotation;
 import com.lx.model.User;
 import com.lx.service.LoginService;
 import org.apache.log4j.Logger;
@@ -25,7 +26,7 @@ public class LoginController {
     /**
      * 日志监控
      */
-    private static Logger logger = Logger.getLogger(UserController.class);
+    private static Logger logger = Logger.getLogger(LoginController.class);
 
     /**
      * 用户登录
@@ -35,6 +36,7 @@ public class LoginController {
      * @param session  session
      * @return 成功返回到主界面 失败返回登录界面
      */
+    @LogAnnotation(name = "用户登录操作")
     @PostMapping("/login")
     public String userLogin(@RequestParam(name = "username") String username,
                             @RequestParam(name = "password") String password,

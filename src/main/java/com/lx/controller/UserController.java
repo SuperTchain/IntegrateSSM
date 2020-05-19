@@ -1,6 +1,7 @@
 package com.lx.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.lx.annotation.LogAnnotation;
 import com.lx.model.User;
 import com.lx.service.UserService;
 import org.apache.log4j.Logger;
@@ -39,6 +40,7 @@ public class UserController {
      * @param model 封装的数据
      * @return 返回到用户列表页面
      */
+    @LogAnnotation(name = "查询所有用户操作")
     @GetMapping(value = "/findAll")
     public String findAll(@RequestParam(name = "page",  defaultValue = "1") int page,
                           @RequestParam(name = "size",  defaultValue = "5") int size, Model model) {
@@ -47,6 +49,7 @@ public class UserController {
         PageInfo pageInfo = new PageInfo(list);
         model.addAttribute("pageInfo", pageInfo);
         logger.info("查询成功");
+        logger.info(list);
         return "user-list";
     }
 
@@ -76,6 +79,7 @@ public class UserController {
      * @param user 用户信息
      * @return 返回用户列表页面
      */
+    @LogAnnotation(name = "添加用户操作")
     @PostMapping("/addUser")
     public String addUser(User user) {
         //判断是否添加成功
@@ -92,6 +96,7 @@ public class UserController {
      * @param id 用户id
      * @return 返回到修改界面
      */
+    @LogAnnotation(name = "编辑用户信息操作")
     @GetMapping("/edit")
     public String editUserMsg(@RequestParam(name = "id") Integer id, Model model) {
         //查询用户信息
@@ -107,6 +112,7 @@ public class UserController {
      * @param user 用户信息
      * @return 成功返回到用户列表信息，失败返回到修改界面
      */
+    @LogAnnotation(name = "更新用户信息操作")
     @PostMapping("/update")
     public String updateEditMsg(User user) {
         if (Boolean.TRUE.equals(userService.updateUserMsg(user))) {
@@ -122,6 +128,7 @@ public class UserController {
      * @param id 用户id
      * @return 成功返回更新用户列表，失败返回用户列表
      */
+    @LogAnnotation(name = "删除用户操作")
     @GetMapping("/delete")
     public String deleteUser(@RequestParam(name = "id") Integer id) {
         if (Boolean.TRUE.equals(userService.deleteUserMsg(id))) {
@@ -137,6 +144,7 @@ public class UserController {
      * @param user 注册类型
      * @return 登录界面
      */
+    @LogAnnotation(name = "用户注册操作")
     @PostMapping("/register")
     public String userRegister(User user) throws IOException {
             //保存数据库的路径
