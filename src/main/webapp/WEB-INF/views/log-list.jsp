@@ -12,16 +12,6 @@
 <head>
     <title>日志列表界面</title>
     <script type="text/javascript" src="../../static/js/jquery-3.3.1/jquery-3.3.1.js"></script>
-    <script type="text/javascript">
-        function changePageSize() {
-            //获取下拉框的值
-            var pageSize = $("#changePageSize").val();
-
-            //向服务器发送请求，改变没页显示条数
-            location.href = "${pageContext.request.contextPath}/user/findAll?page=1&size="
-                + pageSize;
-        }
-    </script>
 </head>
 <body>
 <table>
