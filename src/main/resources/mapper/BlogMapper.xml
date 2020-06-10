@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lx.dao.BlogDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lx.model.Blog">
+        <id column="id" property="id" />
+        <result column="blogTitle" property="blogTitle" />
+        <result column="blogDesc" property="blogDesc" />
+        <result column="blogContent" property="blogContent" />
+        <result column="blogPublishTime" property="blogPublishTime" />
+        <result column="blogOrigin" property="blogOrigin" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, blogTitle, blogDesc, blogContent, blogPublishTime, blogOrigin
+    </sql>
+
+    <!--查询所有博客列表-->
+    <select id="findAllBlog" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"></include> from blog
+    </select>
+</mapper>
