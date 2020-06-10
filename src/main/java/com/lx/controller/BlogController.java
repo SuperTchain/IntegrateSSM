@@ -1,5 +1,10 @@
 package com.lx.controller;
 
+import com.lx.annotation.LogAnnotation;
+import com.lx.model.Blog;
+import com.lx.service.BlogService;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @ClassName BlogController
@@ -20,12 +26,26 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/blog")
 public class BlogController {
     /**
+     * 引入日志
+     */
+    private static Logger logger=Logger.getLogger(BlogController.class);
+
+    /**
+     * 引入service
+     */
+    @Autowired
+    private BlogService blogService;
+
+    /**
      * 跳转到博客列表界面
      * @param model 模型
      * @return 博客列表界面
      */
-    @GetMapping("/findAllLog")
+    @GetMapping("/findAllBlog")
+    @LogAnnotation(name = "查询所有博客",url = "/blog/findAllBlog")
     public String findAllLog(Model model){
+        List<Blog> list = blogService.findAllBlog();
+        model.addAttribute("BlogList",list);
         return "blog-list";
     }
 

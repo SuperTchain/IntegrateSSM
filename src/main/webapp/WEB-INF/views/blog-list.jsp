@@ -27,19 +27,14 @@
     </thead>
 
     <tbody>
-    <c:forEach items="${pageInfo.list}" var="user">
+    <c:forEach items="${BlogList}" var="BlogList">
         <tr>
-            <td>${user.id}</td>
-            <td>${user.name}</td>
-            <td>${user.password}</td>
-            <td>${user.userdesc}</td>
-            <td>${user.registdateToStr}</td>
-            <td>${user.addressesList.homeaddress}</td>
-            <td>${user.addressesList.workaddress}</td>
-            <td>${user.phonenumber}</td>
-            <td>${user.emailaddress}</td>
-            <td>${user.hobbys}</td>
-            <td>${user.gender}</td>
+            <td>${BlogList.id}</td>
+            <td>${BlogList.blogTitle}</td>
+            <td>${BlogList.blogDesc}</td>
+            <td>${username}</td>
+            <td>${BlogList.blogPublishTimeToStr}</td>
+            <td>${BlogList.blogOrigin}</td>
             <td><a href="${pageContext.request.contextPath}/blog/view?id=${user.id}">查看</a></td>
             <td><a href="${pageContext.request.contextPath}/blog/edit?id=${user.id}">修改</a></td>
             <td><a href="${pageContext.request.contextPath}/blog/delete?id=${user.id}">删除</a></td>
