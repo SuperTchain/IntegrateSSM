@@ -18,7 +18,9 @@
     <br>
     个人简介<input type="text" name="userdesc">
     <br>
-    住址<input type="text" name="address">
+    用户居住住址<input type="text" name="addressesList.homeaddress">
+    <br>
+    用户工作住址<input type="text" name="addressesList.workaddress">
     <br>
     电话号码<input type="text" name="phonenumber">
     <br>

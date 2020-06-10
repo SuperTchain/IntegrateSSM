@@ -36,8 +36,8 @@ public class LoginController {
      * @param session  session
      * @return 成功返回到主界面 失败返回登录界面
      */
-    @LogAnnotation(name = "用户登录操作")
     @PostMapping("/login")
+    @LogAnnotation(name = "登录",url = "/login")
     public String userLogin(@RequestParam(name = "username") String username,
                             @RequestParam(name = "password") String password,
                             HttpSession session) {
@@ -56,6 +56,17 @@ public class LoginController {
             }
             return "redirect:/login.jsp";
         }
+    }
+
+    /**
+     * 退出
+     * @param session 会话
+     * @return 登录界面
+     */
+    @GetMapping("/logout")
+    @LogAnnotation(name = "退出",url = "/logout")
+    public String logout(HttpSession session){
+        return "redirect:/login.jsp";
     }
 
     /**

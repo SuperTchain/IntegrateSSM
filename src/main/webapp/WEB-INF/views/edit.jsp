@@ -53,8 +53,11 @@
     <label>用户个人简介</label>
     <input name="userdesc" value="${user.userdesc}">
     <br>
-    <label>用户地址</label>
-    <input name="address" value="${user.address}">
+    <label>用户居住地址</label>
+    <input name="addressesList.homeaddress" value="${user.addressesList.homeaddress}">
+    <br>
+    <label>用户工作地址</label>
+    <input name="addressesList.workaddress" value="${user.addressesList.workaddress}">
     <br>
     <label>用户电话号码</label>
     <input name="phonenumber" value="${user.phonenumber}">

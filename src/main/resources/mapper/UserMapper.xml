@@ -27,14 +27,18 @@
     <insert id="addUser" parameterType="com.lx.model.User">
         insert into user (name,password,userdesc,phonenumber,emailaddress,hobbys,registdate,gender) values(#{name},#{password},#{userdesc},#{phonenumber},#{emailaddress},#{hobbys},now(),#{gender})
     </insert>
+    <!--添加用户地址-->
+    <insert id="addAddress" parameterType="com.lx.model.UserAddress">
+        insert into address_table (homeaddress, workaddress,userid) values(#{homeaddress},#{workaddress},(select id from user where name=#{name}))
+    </insert>
 
-    <!--根据用户名进行查询-->
-    <select id="findUserByName" resultType="com.lx.model.User">
-        select id,name,password,userdesc,registdate,phonenumber,emailaddress,hobbys,gender from user where name=#{username}
-    </select>
+<!--    &lt;!&ndash;根据用户名进行查询&ndash;&gt;-->
+<!--    <select id="findUserByName" resultType="com.lx.model.User">-->
+<!--        select id,name,password,userdesc,registdate,phonenumber,emailaddress,hobbys,gender from user where name=#{username}-->
+<!--    </select>-->
 
     <!--根据id进行查询-->
-    <select id="findUserById" resultType="com.lx.model.User">
+    <select id="findUserById" resultMap="findAllMsg">
         select id,name,password,userdesc,registdate,phonenumber,emailaddress,hobbys,gender from user where id=#{id}
     </select>
 
@@ -43,9 +47,18 @@
         update user set password=#{password},userdesc=#{userdesc},phonenumber=#{phonenumber},emailaddress=#{emailaddress},hobbys=#{hobbys},gender=#{gender} where id=#{id}
     </update>
 
+    <!--更新地址-->
+    <update id="updateAddress" parameterType="com.lx.model.UserAddress">
+        update address_table set homeaddress=#{homeaddress},workaddress=#{workaddress} where userid=#{id}
+    </update>
+
     <!--删除信息-->
     <delete id="deleteUserMsg">
-        delete from user where id=#{id}
+        delete from user where id=#{id};
+    </delete>
+    <!--删除信息-->
+    <delete id="deleteAddress">
+        delete from address_table where userid=#{id};
     </delete>
 
     <!--用户注册-->

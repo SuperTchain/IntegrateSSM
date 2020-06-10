@@ -7,6 +7,7 @@ import com.lx.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,13 +35,14 @@ public class UserController {
      */
     private static Logger logger = Logger.getLogger(UserController.class);
 
+
     /**
      * 查询所有用户信息
      *
      * @param model 封装的数据
      * @return 返回到用户列表页面
      */
-    @LogAnnotation(name = "查询所有用户操作")
+    @LogAnnotation(name = "查询所有用户",url = "/user/findAll")
     @GetMapping(value = "/findAll")
     public String findAll(@RequestParam(name = "page",  defaultValue = "1") int page,
                           @RequestParam(name = "size",  defaultValue = "5") int size, Model model) {
@@ -48,6 +50,7 @@ public class UserController {
         //将查询结果放进pageinfo
         PageInfo pageInfo = new PageInfo(list);
         model.addAttribute("pageInfo", pageInfo);
+        System.out.println(list);
         logger.info("查询成功");
         logger.info(list);
         return "user-list";
@@ -79,11 +82,12 @@ public class UserController {
      * @param user 用户信息
      * @return 返回用户列表页面
      */
-    @LogAnnotation(name = "添加用户操作")
+    @LogAnnotation(name = "添加用户",url = "/user/addUser")
     @PostMapping("/addUser")
+    @Transactional(rollbackFor = Exception.class)
     public String addUser(User user) {
         //判断是否添加成功
-        if (Boolean.TRUE.equals(userService.addUser(user))) {
+        if (Boolean.TRUE.equals(userService.addUser(user))&&Boolean.TRUE.equals(userService.addAddress(user.getId(),user.getAddressesList().getHomeaddress(),user.getAddressesList().getWorkaddress(),user.getName()))) {
             logger.info("添加成功");
             return "redirect:findAll";
         }
@@ -96,7 +100,7 @@ public class UserController {
      * @param id 用户id
      * @return 返回到修改界面
      */
-    @LogAnnotation(name = "编辑用户信息操作")
+    @LogAnnotation(name = "编辑用户信息",url = "/user/edit")
     @GetMapping("/edit")
     public String editUserMsg(@RequestParam(name = "id") Integer id, Model model) {
         //查询用户信息
@@ -112,11 +116,13 @@ public class UserController {
      * @param user 用户信息
      * @return 成功返回到用户列表信息，失败返回到修改界面
      */
-    @LogAnnotation(name = "更新用户信息操作")
+    @LogAnnotation(name = "更新用户信息",url = "/user/update")
     @PostMapping("/update")
+    @Transactional(rollbackFor = Exception.class)
     public String updateEditMsg(User user) {
-        if (Boolean.TRUE.equals(userService.updateUserMsg(user))) {
-            logger.info("更新成功");
+        logger.info(user);
+        if (Boolean.TRUE.equals(userService.updateUserMsg(user))&&Boolean.TRUE.equals(userService.updateAddress(user.getId(),user.getAddressesList().getHomeaddress(),user.getAddressesList().getWorkaddress()))) {
+            logger.info("更新用户信息成功");
             return "redirect:findAll";
         }
         return "edit";
@@ -128,10 +134,10 @@ public class UserController {
      * @param id 用户id
      * @return 成功返回更新用户列表，失败返回用户列表
      */
-    @LogAnnotation(name = "删除用户操作")
+    @LogAnnotation(name = "删除用户",url = "/user/delete")
     @GetMapping("/delete")
     public String deleteUser(@RequestParam(name = "id") Integer id) {
-        if (Boolean.TRUE.equals(userService.deleteUserMsg(id))) {
+        if (Boolean.TRUE.equals(userService.deleteAddress(id))&&Boolean.TRUE.equals(userService.deleteUserMsg(id))) {
             logger.info("删除成功");
             return "redirect:findAll";
         }
@@ -144,7 +150,7 @@ public class UserController {
      * @param user 注册类型
      * @return 登录界面
      */
-    @LogAnnotation(name = "用户注册操作")
+    @LogAnnotation(name = "用户注册",url = "/user/register")
     @PostMapping("/register")
     public String userRegister(User user) throws IOException {
             //保存数据库的路径

@@ -85,4 +85,38 @@ public class UserServiceImpl implements UserService {
     public Boolean userRegister(User user) {
         return userDao.userRegister(user) == 1 ? true : false;
     }
+
+    /**
+     * 添加地址
+     * @param id id
+     * @param homeaddress 居住地址
+     * @param workaddress 工作地址
+     * @return 操作
+     */
+    @Override
+    public Boolean addAddress(Integer id,String homeaddress,String workaddress,String name) {
+        return userDao.addAddress(id,homeaddress,workaddress,name)==1?true:false;
+    }
+
+    /**
+     * 更新地址
+     * @param id id
+     * @param homeaddress 居住地址
+     * @param workaddress 工作地址
+     * @return 操作
+     */
+    @Override
+    public Boolean updateAddress(Integer id,String homeaddress,String workaddress) {
+        return userDao.updateAddress(id,homeaddress,workaddress)==1?true:false;
+    }
+
+    /**
+     * 删除地址
+     * @param id 用户id
+     * @return 操作
+     */
+    @Override
+    public Boolean deleteAddress(Integer id) {
+        return userDao.deleteAddress(id)==1?true:false;
+    }
 }

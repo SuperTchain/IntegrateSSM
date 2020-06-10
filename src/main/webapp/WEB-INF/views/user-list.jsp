@@ -32,7 +32,8 @@
         <th>用户密码</th>
         <th>用户个人简介</th>
         <th>用户注册时间</th>
-        <th>用户住址</th>
+        <th>用户居住住址</th>
+        <th>用户工作住址</th>
         <th>用户电话</th>
         <th>用户邮件</th>
         <th>用户爱好</th>
@@ -49,6 +50,7 @@
             <td>${user.userdesc}</td>
             <td>${user.registdateToStr}</td>
             <td>${user.addressesList.homeaddress}</td>
+            <td>${user.addressesList.workaddress}</td>
             <td>${user.phonenumber}</td>
             <td>${user.emailaddress}</td>
             <td>${user.hobbys}</td>
@@ -85,5 +87,6 @@
     </span>
 </div>
 <button onclick="location.href='${pageContext.request.contextPath}/user/addUser'">添加用户</button>
+<a href="/user/returnMain">返回主界面</a>
 </body>
 </html>

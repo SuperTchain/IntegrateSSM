@@ -28,7 +28,7 @@ public class mbg {
     public static void main(String[] args) {
 
         //表名
-        String moduleName = "user";
+        String moduleName = "log";
 
         // 1、创建代码生成器
         AutoGenerator mpg = new AutoGenerator();

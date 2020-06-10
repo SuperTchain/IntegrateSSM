@@ -20,6 +20,8 @@
 <br>
 <h2>欢迎你,${username}</h2>
 <button onclick="location.href='${pageContext.request.contextPath}/user/findAll'">查看所有用户</button>
+<button onclick="location.href='${pageContext.request.contextPath}/log/findAllLog'">查看所有日志</button>
+<button onclick="location.href='${pageContext.request.contextPath}/logout'">退出</button>
 <%--<form action="${pageContext.request.contextPath}/user/findAll" method="post">--%>
 <%--    <input type="submit" value="查看所有用户">--%>
 <%--</form>--%>

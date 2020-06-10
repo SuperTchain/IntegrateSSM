@@ -31,15 +31,19 @@
     <mvc:resources location="/static/" mapping="/static/**"/>
 
     <mvc:default-servlet-handler></mvc:default-servlet-handler>
-    <!--开启aop注解-->
+    <!--开启aop注解 proxy-target-class属性，默认为false,表示使用JDK动态代理技术织入增强；
+    当配置为<aop:aspectj-autoproxy proxy-target-class="true"/>时，表示使用CGLIB动态代理技术织入增强。
+    不过即使proxy-target-class设置为false，如果目标类没有声明接口，则Spring将自动使用CGLIB动态代理
+    -->
     <aop:aspectj-autoproxy proxy-target-class="true"/>
     <!--开启登录拦截器-->
     <mvc:interceptors>
-    <mvc:interceptor>
-        <mvc:mapping path="/**"/>
-        <mvc:exclude-mapping path="/login"/>
-        <mvc:exclude-mapping path="/user/register"/>
-        <bean class="com.lx.utils.LoginIntercepter"></bean>
-    </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/login"/>
+            <mvc:exclude-mapping path="/register"/>
+            <mvc:exclude-mapping path="/user/register"/>
+            <bean class="com.lx.utils.LoginIntercepter"></bean>
+        </mvc:interceptor>
     </mvc:interceptors>
 </beans>

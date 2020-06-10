@@ -56,7 +56,7 @@
 </form>
 <br>
 <span>
-        <a href="${pageContext.request.contextPath}/register">注册</a>
+        <a href="/register">注册</a>
         <a>忘记密码？</a>
     </span>
 </body>

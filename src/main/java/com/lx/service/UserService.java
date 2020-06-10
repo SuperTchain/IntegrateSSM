@@ -56,4 +56,29 @@ public interface UserService {
      * @return 操作记录数
      */
     Boolean userRegister(User user);
+
+    /**
+     * 添加地址
+     * @param id id
+     * @param homeaddress 居住地址
+     * @param workaddress 工作地址
+     * @return 操作记录
+     */
+    Boolean addAddress(Integer id,String homeaddress,String workaddress,String name);
+
+    /**
+     * 更新地址
+     * @param id id
+     * @param homeaddress 居住地址
+     * @param workaddress 工作地址
+     * @return 操作
+     */
+    Boolean updateAddress(Integer id,String homeaddress,String workaddress);
+
+    /**
+     * 删除地址
+     * @param id 用户id
+     * @return 操作记录
+     */
+    Boolean deleteAddress(Integer id);
 }
