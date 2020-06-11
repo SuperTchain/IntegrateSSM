@@ -31,4 +31,24 @@ public class BlogServiceImpl implements BlogService {
     public List<Blog> findAllBlog() {
         return blogDao.findAllBlog();
     }
+
+    /**
+     * 模糊查询博客
+     * @param blogTitle 博客标题
+     * @param blogAuthor 博主
+     * @return 博客列表
+     */
+    @Override
+    public List<Blog> search(String blogTitle, String blogAuthor) {
+        return blogDao.search(blogTitle,blogAuthor);
+    }
+
+    /**
+     * 删除博客
+     * @param id 博客id
+     */
+    @Override
+    public Integer deleteById(Integer id) {
+        return blogDao.deleteById(id);
+    }
 }

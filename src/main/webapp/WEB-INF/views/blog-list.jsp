@@ -14,6 +14,14 @@
     <script type="text/javascript" src="../../static/js/jquery-3.3.1/jquery-3.3.1.js"></script>
 </head>
 <body>
+<form action="${pageContext.request.contextPath}/blog/search" method="post">
+    <label>查询博客</label>
+    <br>
+    <input type="text" name="blogTitle" placeholder="请输入博客标题">
+    <br>
+    <input type="text" name="blogAuthor" placeholder="请输入博主名称">
+    <input type="submit" value="查询">
+</form>
 <table>
     <thead>
     <tr>
@@ -32,12 +40,10 @@
             <td>${BlogList.id}</td>
             <td>${BlogList.blogTitle}</td>
             <td>${BlogList.blogDesc}</td>
-            <td>${username}</td>
+            <td>${BlogList.blogAuthor}</td>
             <td>${BlogList.blogPublishTimeToStr}</td>
-            <td>${BlogList.blogOrigin}</td>
-            <td><a href="${pageContext.request.contextPath}/blog/view?id=${user.id}">查看</a></td>
-            <td><a href="${pageContext.request.contextPath}/blog/edit?id=${user.id}">修改</a></td>
-            <td><a href="${pageContext.request.contextPath}/blog/delete?id=${user.id}">删除</a></td>
+            <td>${BlogList.blogOriginToStr}</td>
+            <td><a href="${pageContext.request.contextPath}/blog/delete?id=${BlogList.id}">删除</a></td>
         </tr>
     </c:forEach>
     </tbody>

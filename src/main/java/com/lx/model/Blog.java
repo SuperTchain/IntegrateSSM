@@ -42,6 +42,12 @@ public class Blog implements Serializable {
     @TableField("blogOrigin")
     private Integer blogOrigin;
 
+    private String blogOriginToStr;
+
+
+    @TableField("blogAuthor")
+    private String blogAuthor;
+
     @Override
     public String toString() {
         return "Blog{" +
@@ -52,7 +58,32 @@ public class Blog implements Serializable {
                 ", blogPublishTime=" + blogPublishTime +
                 ", blogPublishTimeToStr='" + blogPublishTimeToStr + '\'' +
                 ", blogOrigin=" + blogOrigin +
+                ", blogOriginToStr='" + blogOriginToStr + '\'' +
+                ", blogAuthor='" + blogAuthor + '\'' +
                 '}';
+    }
+
+    public String getBlogOriginToStr() {
+        if (blogOrigin!=null){
+            if (blogOrigin==1){
+                blogOriginToStr="原创";
+            }else {
+                blogOriginToStr="非原创";
+            }
+        }
+        return blogOriginToStr;
+    }
+
+    public void setBlogOriginToStr(String blogOriginToStr) {
+        this.blogOriginToStr = blogOriginToStr;
+    }
+
+    public String getBlogAuthor() {
+        return blogAuthor;
+    }
+
+    public void setBlogAuthor(String blogAuthor) {
+        this.blogAuthor = blogAuthor;
     }
 
     public String getBlogPublishTimeToStr() {

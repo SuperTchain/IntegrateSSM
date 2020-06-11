@@ -20,4 +20,19 @@ public interface BlogService  {
      * @return 博客列表
      */
     List<Blog> findAllBlog();
+
+    /**
+     * 模糊查询结果
+     * @param blogTitle 博客标题
+     * @param blogAuthor 博主
+     * @return 博客列表
+     */
+    List<Blog> search(String blogTitle, String blogAuthor);
+
+    /**
+     * 删除博客
+     * @param id 博客id
+     * @return 删除结果
+     */
+    Integer deleteById(Integer id);
 }

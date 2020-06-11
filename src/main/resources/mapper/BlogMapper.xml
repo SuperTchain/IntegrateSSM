@@ -10,15 +10,32 @@
         <result column="blogContent" property="blogContent" />
         <result column="blogPublishTime" property="blogPublishTime" />
         <result column="blogOrigin" property="blogOrigin" />
+        <result column="blogAuthor" property="blogAuthor" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, blogTitle, blogDesc, blogContent, blogPublishTime, blogOrigin
+        id, blogTitle, blogDesc, blogContent, blogPublishTime, blogOrigin,blogAuthor
     </sql>
 
     <!--查询所有博客列表-->
     <select id="findAllBlog" resultMap="BaseResultMap">
         select <include refid="Base_Column_List"></include> from blog
     </select>
+    <!--模糊查询博客-->
+    <select id="search" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"></include> from blog
+        <where>
+            <if test="blogTitle!=null">
+                and blogTitle like '%${blogTitle}%'
+            </if>
+            <if test="blogAuthor!=null">
+                and blogAuthor like '%${blogAuthor}%'
+            </if>
+        </where>
+    </select>
+    <!--根据博客id删除博客-->
+    <delete id="deleteById" >
+        delete from blog where id=#{id}
+    </delete>
 </mapper>

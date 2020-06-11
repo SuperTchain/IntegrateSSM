@@ -13,16 +13,6 @@
     <script type="text/javascript" src="../../static/js/jquery-3.3.1/jquery-3.3.1.js"></script>
     <%--在页面中引入CKEditor：--%>
     <script type="text/javascript" src="<%=request.getContextPath() %>/static/ckeditor/ckeditor.js"> </script>
-<%--    <script type="text/javascript">--%>
-<%--        var editor = null;--%>
-<%--        window.onload = function(){--%>
-<%--            //参数‘content’是textarea元素的name属性值，而非id属性值--%>
-<%--            editor = CKEDITOR.replace('content');--%>
-<%--            editor.setData('这里是需要传递给CKEditor编辑器实例的值');--%>
-<%--            editor.getData();--%>
-<%--            editor.updateElement(); //非常重要的一句代码--%>
-<%--        }--%>
-<%--    </script>--%>
 </head>
 <body>
 <form method="post" action="${pageContext.request.contextPath}/blog/addBlog" autocomplete="on" enctype="multipart/form-data">

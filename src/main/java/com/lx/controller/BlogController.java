@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -28,7 +27,7 @@ public class BlogController {
     /**
      * 引入日志
      */
-    private static Logger logger=Logger.getLogger(BlogController.class);
+    private static Logger logger = Logger.getLogger(BlogController.class);
 
     /**
      * 引入service
@@ -37,40 +36,83 @@ public class BlogController {
     private BlogService blogService;
 
     /**
-     * 跳转到博客列表界面
+     * 查询所有博客列表
+     *
      * @param model 模型
      * @return 博客列表界面
      */
     @GetMapping("/findAllBlog")
-    @LogAnnotation(name = "查询所有博客",url = "/blog/findAllBlog")
-    public String findAllLog(Model model){
+    @LogAnnotation(name = "查询所有博客", url = "/blog/findAllBlog")
+    public String findAllLog(Model model) {
         List<Blog> list = blogService.findAllBlog();
-        model.addAttribute("BlogList",list);
+        model.addAttribute("BlogList", list);
+        logger.info("查询所有博客成功");
         return "blog-list";
     }
 
 
     /**
      * 查看博客信息
+     *
      * @param id 博客ID
      * @return 博客信息界面
      */
     @GetMapping("/view")
-    public String viewBlog(Integer id){
-        return "view-blog";
+    public String viewBlog(Integer id) {
+        return "viewBlog";
     }
 
 
     /**
      * 添加博客
+     *
      * @param request 请求
      * @return 博客列表界面
      */
     @PostMapping("/addBlog")
-    public String addBlog(HttpServletRequest request,String blogTitle,String blogDesc){
+    @LogAnnotation(name = "添加博客", url = "/blog/addBlog")
+    public String addBlog(HttpServletRequest request, String blogTitle, String blogDesc) {
+        //获取ckeditor编辑的内容
         String html = request.getParameter("content");
+        System.out.println(html + "  " + blogTitle + "  " + blogDesc);
+        return "redirect:/blog/findAllBlog";
+    }
 
-        System.out.println(html+"  "+blogTitle+"  "+blogDesc);
-        return "blog-list";
+    /**
+     * 删除博客
+     *
+     * @param id 博客ID
+     * @return 博客列表界面
+     */
+    @GetMapping("/delete")
+    @LogAnnotation(name = "删除博客", url = "/blog/delete")
+    public String deleteBlog(Integer id) {
+        Integer integer = blogService.deleteById(id);
+        if (integer == 1) {
+
+            logger.info("删除成功");
+        }
+        return "redirect:/blog/findAllBlog";
+    }
+
+    /**
+     * 模糊查询博客
+     *
+     * @param blogTitle  博客标题
+     * @param blogAuthor 博主
+     * @param model      模型
+     * @return 博客界面
+     */
+    @PostMapping("/search")
+    @LogAnnotation(name = "模糊查询博客", url = "/blog/search")
+    public String search(String blogTitle, String blogAuthor, Model model) {
+        if (blogTitle == null && blogAuthor == null) {
+            return "redirect:findAllBlog";
+        } else {
+            List<Blog> list = blogService.search(blogTitle, blogAuthor);
+            model.addAttribute("BlogList", list);
+            logger.info("模糊查询成功");
+            return "blog-list";
+        }
     }
 }
