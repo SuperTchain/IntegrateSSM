@@ -42,7 +42,7 @@
         select id,name,password,userdesc,registdate,phonenumber,emailaddress,hobbys,gender from user where id=#{id}
     </select>
 
-    <!--更新信息-->
+    <!--更新用户信息-->
     <update id="updateUserMsg" parameterType="com.lx.model.User">
         update user set password=#{password},userdesc=#{userdesc},phonenumber=#{phonenumber},emailaddress=#{emailaddress},hobbys=#{hobbys},gender=#{gender} where id=#{id}
     </update>
@@ -52,17 +52,30 @@
         update address_table set homeaddress=#{homeaddress},workaddress=#{workaddress} where userid=#{id}
     </update>
 
-    <!--删除信息-->
+    <!--删除用户信息-->
     <delete id="deleteUserMsg">
         delete from user where id=#{id};
     </delete>
-    <!--删除信息-->
+    <!--删除地址信息-->
     <delete id="deleteAddress">
         delete from address_table where userid=#{id};
     </delete>
 
     <!--用户注册-->
     <insert id="userRegister" parameterType="com.lx.model.User">
-        insert into user (name, password,registdate, emailaddress,img) values (#{name},#{password},now(),#{emailaddress},#{img})
+        insert into user (name,password,userdesc,phonenumber,emailaddress,hobbys,registdate,gender,img) values(#{name},#{password},#{userdesc},#{phonenumber},#{emailaddress},#{hobbys},now(),#{gender},#{img})
     </insert>
+    <!--模糊查询博主-->
+    <!--模糊查询博客-->
+    <select id="tSearch" resultMap="findAllMsg">
+        select name,userdesc,registdate,phonenumber,emailaddress,hobbys,gender from user
+        <where>
+            <if test="name!=null">
+                and name like '%${name}%'
+            </if>
+            <if test="phonenumber!=null">
+                and phonenumber like '%${phonenumber}%'
+            </if>
+        </where>
+    </select>
 </mapper>

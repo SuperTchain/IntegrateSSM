@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>博客详细界面</title>
-    <script type="text/javascript" src="../../static/js/jquery-3.3.1/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../../../static/js/jquery-3.3.1/jquery-3.3.1.js"></script>
     <%--在页面中引入CKEditor：--%>
     <script type="text/javascript" src="<%=request.getContextPath() %>/static/ckeditor/ckeditor.js"> </script>
 </head>
@@ -29,6 +29,7 @@
     <textarea id="content" name="content" rows="8" cols="30" class="ckeditor">开始编辑</textarea></td>
     <button type="submit" id="bt1">提交</button>
 </form>
-
+<br>
+<a href="/user/returnMain">返回主界面</a>
 </body>
 </html>

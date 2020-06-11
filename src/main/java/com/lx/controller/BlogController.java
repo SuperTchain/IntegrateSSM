@@ -43,13 +43,26 @@ public class BlogController {
      */
     @GetMapping("/findAllBlog")
     @LogAnnotation(name = "查询所有博客", url = "/blog/findAllBlog")
-    public String findAllLog(Model model) {
+    public String findAllBlog(Model model) {
         List<Blog> list = blogService.findAllBlog();
         model.addAttribute("BlogList", list);
         logger.info("查询所有博客成功");
-        return "blog-list";
+        return "admin/blog-list";
     }
 
+    /**
+     * 游客查看博客列表
+     * @param model
+     * @return
+     */
+    @GetMapping("/tFindAllBlog")
+    @LogAnnotation(name = "游客查看博客",url = "/blog/tFindAllBlog")
+    public String tFindAllBlog(Model model){
+        List<Blog> list = blogService.findAllBlog();
+        model.addAttribute("BlogList", list);
+        logger.info("查询所有博客成功");
+        return "tourists/blogList";
+    }
 
     /**
      * 查看博客信息
@@ -58,8 +71,23 @@ public class BlogController {
      * @return 博客信息界面
      */
     @GetMapping("/view")
-    public String viewBlog(Integer id) {
-        return "viewBlog";
+    public String viewBlog(Integer id,Model model) {
+        Blog blog = blogService.findBlogById(id);
+        model.addAttribute("Blog",blog);
+        return "admin/viewBlog";
+    }
+
+    /**
+     * 游客查看博客信息
+     *
+     * @param id 博客ID
+     * @return 博客信息界面
+     */
+    @GetMapping("/tView")
+    public String tViewBlog(Integer id,Model model) {
+        Blog blog = blogService.findBlogById(id);
+        model.addAttribute("Blog",blog);
+        return "tourists/viewBlog";
     }
 
 
@@ -112,7 +140,28 @@ public class BlogController {
             List<Blog> list = blogService.search(blogTitle, blogAuthor);
             model.addAttribute("BlogList", list);
             logger.info("模糊查询成功");
-            return "blog-list";
+            return "admin/blog-list";
+        }
+    }
+
+    /**
+     * 游客模糊查询博客
+     *
+     * @param blogTitle  博客标题
+     * @param blogAuthor 博主
+     * @param model      模型
+     * @return 博客界面
+     */
+    @PostMapping("/tSearch")
+    @LogAnnotation(name = "模糊查询博客", url = "/blog/search")
+    public String tSearch(String blogTitle, String blogAuthor, Model model) {
+        if (blogTitle == null && blogAuthor == null) {
+            return "redirect:tFindAllBlog";
+        } else {
+            List<Blog> list = blogService.search(blogTitle, blogAuthor);
+            model.addAttribute("BlogList", list);
+            logger.info("模糊查询成功");
+            return "tourists/blogList";
         }
     }
 }

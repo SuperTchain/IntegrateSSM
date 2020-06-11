@@ -35,4 +35,11 @@ public interface BlogService  {
      * @return 删除结果
      */
     Integer deleteById(Integer id);
+
+    /**
+     * 根据id查询博客信息
+     * @param id 博客id
+     * @return 博客信息
+     */
+    Blog findBlogById(Integer id);
 }

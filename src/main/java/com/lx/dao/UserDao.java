@@ -82,4 +82,12 @@ public interface UserDao {
      * @return 操作纪律
      */
     int deleteAddress(Integer id);
+
+    /**
+     * 模糊查询博主
+     * @param name 博主名称
+     * @param phonenumber 博主手机号
+     * @return 查询结果
+     */
+    List<User> tSearch(@Param("name") String name,@Param("phonenumber") String phonenumber);
 }

@@ -81,4 +81,12 @@ public interface UserService {
      * @return 操作记录
      */
     Boolean deleteAddress(Integer id);
+
+    /**
+     * 游客模糊查询博主
+     * @param name 博主名
+     * @param phonenumber 电话号码
+     * @return 查询结果
+     */
+    List<User> tSearch(String name, String phonenumber);
 }

@@ -55,9 +55,10 @@
     <button type="submit" id="bt1">登录</button>
 </form>
 <br>
-<span>
-        <a href="/register">注册</a>
-        <a>忘记密码？</a>
-    </span>
+<%--<span>--%>
+<%--        <a href="/register">注册</a>--%>
+<%--        <a>忘记密码？</a>--%>
+<%--    </span>--%>
+<a href="/basic.jsp">返回游客界面</a>
 </body>
 </html>

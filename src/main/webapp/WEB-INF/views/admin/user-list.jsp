@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>用户列表界面</title>
-    <script type="text/javascript" src="../../static/js/jquery-3.3.1/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../../../static/js/jquery-3.3.1/jquery-3.3.1.js"></script>
     <script type="text/javascript">
         function changePageSize() {
             //获取下拉框的值
@@ -86,7 +86,8 @@
        aria-label="Next">尾页</a>
     </span>
 </div>
-<button onclick="location.href='${pageContext.request.contextPath}/user/addUser'">添加用户</button>
+<br>
+<button onclick="location.href='${pageContext.request.contextPath}/user/toAddUser'">添加用户</button>
 <a href="/user/returnMain">返回主界面</a>
 </body>
 </html>

@@ -74,14 +74,40 @@
     <br>
     <input type="password" name="password2" id="registerPassword2">
     <br>
+    <label>用户描述:</label>
+    <br>
+    <input type="text" name="userdesc" >
+    <br>
+    <label>电话号码:</label>
+    <br>
+    <input type="text" name="phonenumber" >
+    <br>
+    <label>爱好</label>
+    <br>
+    <input type="checkbox" name="hobbys" value="听歌">听歌
+    <input type="checkbox" name="hobbys" value="玩游戏">玩游戏
+    <input type="checkbox" name="hobbys" value="看电视">看电视
+    <input type="checkbox" name="hobbys" value="其他">其他
+    <br>
+    <label>性别</label>
+    <br>
+    <input type="radio" value="男" name="gender">男
+    <input type="radio" value="女" name="gender">女
+    <br>
     <label>邮箱:</label>
     <br>
     <input type="email" name="emailaddress" id="email">
+    <br>
+    <label>用户居住地址</label>
+    <input name="addressesList.homeaddress" >
+    <br>
+    <label>用户工作地址</label>
+    <input name="addressesList.workaddress" >
     <br>
     <label>添加头像:</label><input type="file" name="file">
     <br>
     <button type="submit" id="bt1">注册</button>
 </form>
-<a href="/user/returnMain">返回主界面</a>
+<a href="/basic.jsp">返回游客界面</a>
 </body>
 </html>

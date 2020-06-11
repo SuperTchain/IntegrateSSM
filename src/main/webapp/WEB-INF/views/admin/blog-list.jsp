@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>博客列表界面</title>
-    <script type="text/javascript" src="../../static/js/jquery-3.3.1/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../../../static/js/jquery-3.3.1/jquery-3.3.1.js"></script>
 </head>
 <body>
 <form action="${pageContext.request.contextPath}/blog/search" method="post">
@@ -29,6 +29,7 @@
         <th>博客标题</th>
         <th>博客简介</th>
         <th>博主名称</th>
+        <th>博客内容</th>
         <th>博客发表时间</th>
         <th>博客是否原创</th>
     </tr>
@@ -41,14 +42,16 @@
             <td>${BlogList.blogTitle}</td>
             <td>${BlogList.blogDesc}</td>
             <td>${BlogList.blogAuthor}</td>
+            <td>${BlogList.blogContent}</td>
             <td>${BlogList.blogPublishTimeToStr}</td>
             <td>${BlogList.blogOriginToStr}</td>
+            <td><a href="${pageContext.request.contextPath}/blog/view?id=${BlogList.id}">查看</a></td>
             <td><a href="${pageContext.request.contextPath}/blog/delete?id=${BlogList.id}">删除</a></td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
-<a href="${pageContext.request.contextPath}/blog/view">查看</a>
+<br>
 <a href="/user/returnMain">返回主界面</a>
 </body>
 </html>

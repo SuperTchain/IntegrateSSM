@@ -1,13 +1,11 @@
 package com.lx.controller;
 
-import com.github.pagehelper.PageInfo;
 import com.lx.annotation.LogAnnotation;
 import com.lx.model.Log;
 import com.lx.service.LogService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,7 +40,7 @@ public class LogController {
      */
     @GetMapping("/toLogList")
     public String toLogList() {
-        return "log-list";
+        return "admin/log-list";
     }
 
     /**
@@ -65,7 +63,7 @@ public class LogController {
         List<Log> allLogByPage = logService.findAllLogByPage();
         logger.info("查询成功");
         model.addAttribute("allLogByPage", allLogByPage);
-        return "log-list";
+        return "admin/log-list";
     }
 
     /**
@@ -79,7 +77,7 @@ public class LogController {
         Log logById = logService.findLogById(id);
         logger.info("根据产品ID查询成功");
         model.addAttribute("logById", logById);
-        return "log-list";
+        return "admin/log-list";
     }
 
     /**
@@ -92,7 +90,7 @@ public class LogController {
     public String batchDeleteByLogId( String[] ids) {
         Integer integer = logService.batchDeleteByLogId(ids);
         logger.info("成功批量删除日志");
-        return "log-list";
+        return "admin/log-list";
     }
 
     /**
@@ -121,7 +119,7 @@ public class LogController {
         List<Log> list = logService.search(userName, timerange);
         model.addAttribute("list",list);
         logger.info("条件搜索查询成功");
-        return "user-list";
+        return "admin/user-list";
     }
 
 }

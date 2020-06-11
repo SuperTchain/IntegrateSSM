@@ -55,6 +55,6 @@
 
 
     <welcome-file-list>
-        <welcome-file>login.jsp</welcome-file>
+        <welcome-file>basic.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

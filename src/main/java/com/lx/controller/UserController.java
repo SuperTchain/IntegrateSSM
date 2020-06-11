@@ -2,6 +2,7 @@ package com.lx.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.lx.annotation.LogAnnotation;
+import com.lx.model.Blog;
 import com.lx.model.User;
 import com.lx.service.UserService;
 import org.apache.log4j.Logger;
@@ -50,20 +51,57 @@ public class UserController {
         //将查询结果放进pageinfo
         PageInfo pageInfo = new PageInfo(list);
         model.addAttribute("pageInfo", pageInfo);
-        System.out.println(list);
         logger.info("查询成功");
         logger.info(list);
-        return "user-list";
+        return "admin/user-list";
     }
+
+    /**
+     * 游客查询所有用户信息
+     *
+     * @param model 封装的数据
+     * @return 返回到用户列表页面
+     */
+    @LogAnnotation(name = "游客查询所有用户",url = "/user/tFindAll")
+    @GetMapping(value = "/tFindAll")
+    public String tFindAll(@RequestParam(name = "page",  defaultValue = "1") int page,
+                          @RequestParam(name = "size",  defaultValue = "5") int size, Model model) {
+        List<User> list = userService.findAll(page, size);
+        model.addAttribute("list", list);
+        logger.info("查询成功");
+        logger.info(list);
+        return "tourists/userList";
+    }
+
+    /**
+     * 游客模糊查询成功
+     * @param name 博主姓名
+     * @param phonenumber 博主电话
+     * @param model 模型
+     * @return 博客界面
+     */
+    @PostMapping("/tSearch")
+    @LogAnnotation(name = "游客模糊查询博主",url = "/user/tSearch")
+    public String tSearch(String name,String phonenumber,Model model){
+        if (name == null && phonenumber == null) {
+            return "redirect:tFindAll";
+        } else {
+            List<User> list = userService.tSearch(name, phonenumber);
+            model.addAttribute("list", list);
+            logger.info("模糊查询成功");
+            return "tourists/userList";
+        }
+    }
+
 
     /**
      * 来到添加用户界面
      *
      * @return 添加界面
      */
-    @GetMapping("/addUser")
+    @GetMapping("/toAddUser")
     public String toAddUser() {
-        return "addUser";
+        return "admin/addUser";
     }
 
     /**
@@ -73,7 +111,7 @@ public class UserController {
      */
     @GetMapping("/returnMain")
     public String toMain() {
-        return "main";
+        return "admin/main";
     }
 
     /**
@@ -91,7 +129,7 @@ public class UserController {
             logger.info("添加成功");
             return "redirect:findAll";
         }
-        return "addUser";
+        return "admin/addUser";
     }
 
     /**
@@ -107,7 +145,7 @@ public class UserController {
         User userById = userService.findUserById(id);
         model.addAttribute("user", userById);
         logger.info("查询成功");
-        return "edit";
+        return "admin/edit";
     }
 
     /**
@@ -125,7 +163,7 @@ public class UserController {
             logger.info("更新用户信息成功");
             return "redirect:findAll";
         }
-        return "edit";
+        return "admin/edit";
     }
 
     /**
@@ -141,7 +179,7 @@ public class UserController {
             logger.info("删除成功");
             return "redirect:findAll";
         }
-        return "user-list";
+        return "admin/user-list";
     }
 
     /**
@@ -176,12 +214,14 @@ public class UserController {
             sqlPath = "/images/"+filename;
             logger.info(sqlPath);
             user.setImg(sqlPath);
-        if (Boolean.TRUE.equals(userService.userRegister(user))) {
+        if (Boolean.TRUE.equals(userService.userRegister(user)) &&Boolean.TRUE.equals(userService.addAddress(user.getId(),user.getAddressesList().getHomeaddress(),user.getAddressesList().getWorkaddress(),user.getName()))) {
             logger.info("注册成功");
             return "redirect:/login.jsp";
         } else {
             logger.info("注册失败");
             return "redirect:/userRegister.jsp";
         }
+
+
     }
 }

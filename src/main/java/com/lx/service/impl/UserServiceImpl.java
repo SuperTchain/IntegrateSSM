@@ -119,4 +119,15 @@ public class UserServiceImpl implements UserService {
     public Boolean deleteAddress(Integer id) {
         return userDao.deleteAddress(id)==1?true:false;
     }
+
+    /**
+     * 游客模糊查询博主
+     * @param name 博主名
+     * @param phonenumber 电话号码
+     * @return 查询结果
+     */
+    @Override
+    public List<User> tSearch(String name, String phonenumber) {
+        return userDao.tSearch(name,phonenumber);
+    }
 }

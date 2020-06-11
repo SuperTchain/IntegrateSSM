@@ -42,8 +42,17 @@
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/login"/>
             <mvc:exclude-mapping path="/register"/>
+            <!--游客权限开放 begin-->
+            <mvc:exclude-mapping path="/blog/tFindAllBlog"/>
+            <mvc:exclude-mapping path="/user/tFindAll"/>
+            <mvc:exclude-mapping path="/user/tSearch"/>
+            <mvc:exclude-mapping path="/blog/tView"/>
+            <mvc:exclude-mapping path="/blog/tSearch"/>
             <mvc:exclude-mapping path="/user/register"/>
-            <bean class="com.lx.utils.LoginIntercepter"></bean>
+            <!--游客权限开放 end-->
+            <bean class="com.lx.utils.LoginIntercepter">
+
+            </bean>
         </mvc:interceptor>
     </mvc:interceptors>
 </beans>

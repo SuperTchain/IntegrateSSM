@@ -38,4 +38,8 @@
     <delete id="deleteById" >
         delete from blog where id=#{id}
     </delete>
+    <!--根据Id查询博客信息-->
+    <select id="findBlogById" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"></include> from blog where id=#{id}
+    </select>
 </mapper>

@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>修改信息界面</title>
-    <script type="text/javascript" src="../../static/js/jquery-3.3.1/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../../../static/js/jquery-3.3.1/jquery-3.3.1.js"></script>
     <script type="text/javascript">
         $(function () {
             //复选框:获取传入的所有的值

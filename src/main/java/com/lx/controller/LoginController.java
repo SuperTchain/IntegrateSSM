@@ -52,7 +52,7 @@ public class LoginController {
                 session.setAttribute("username", userByName.getName());
                 session.setAttribute("userHead",userByName.getImg());
                 logger.info("登录成功");
-                return "main";
+                return "admin/main";
             }
             return "redirect:/login.jsp";
         }
@@ -76,6 +76,6 @@ public class LoginController {
      */
     @GetMapping("/register")
     public String register() {
-        return "userRegister";
+        return "/userRegister.jsp";
     }
 }
