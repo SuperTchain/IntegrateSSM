@@ -37,9 +37,10 @@ public class LoginController {
      * @return 成功返回到主界面 失败返回登录界面
      */
     @PostMapping("/login")
-    @LogAnnotation(name = "登录",url = "/login")
+    @LogAnnotation(name = "登录", url = "/login")
     public String userLogin(@RequestParam(name = "username") String username,
                             @RequestParam(name = "password") String password,
+                            String role,
                             HttpSession session) {
         //后端校验是否为空
         if (username == null || password == null) {
@@ -48,24 +49,37 @@ public class LoginController {
             //查询出用户信息
             User userByName = loginService.findUserByName(username);
             if (userByName != null && userByName.getPassword().equals(password)) {
-                //将用户名放入Model
-                session.setAttribute("username", userByName.getName());
-                session.setAttribute("userHead",userByName.getImg());
-                logger.info("登录成功");
-                return "admin/main";
+                if (userByName.getRole().equals(role)) {
+
+                    //将用户名放入session
+                    session.setAttribute("username", userByName.getName());
+                    session.setAttribute("userHead", userByName.getImg());
+                    logger.info("登录成功");
+                    if (role.equals("1")) {
+                        return "admin/main";
+                    } else {
+                        return "blogAuthor/main";
+                    }
+                } else {
+                    session.setAttribute("errmsg", "身份错误");
+                    return "redirect:/login.jsp";
+                }
             }
+            //查询用户不存在或者密码错误
+            session.setAttribute("errmsg", "用户名或者密码错误");
             return "redirect:/login.jsp";
         }
     }
 
     /**
      * 退出
+     *
      * @param session 会话
      * @return 登录界面
      */
     @GetMapping("/logout")
-    @LogAnnotation(name = "退出",url = "/logout")
-    public String logout(HttpSession session){
+    @LogAnnotation(name = "退出", url = "/logout")
+    public String logout(HttpSession session) {
         return "redirect:/login.jsp";
     }
 

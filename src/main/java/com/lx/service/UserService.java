@@ -10,11 +10,18 @@ import java.util.List;
  */
 public interface UserService {
     /**
-     * 查询所有用户
+     * 查管理员询所有用户
      *
      * @return 返回所有用户信息
      */
     List<User> findAll(int page, int size);
+
+    /**
+     * 游客，博主查询所有用户
+     *
+     * @return 返回所有用户信息
+     */
+    List<User> findAllByOther();
 
     /**
      * 添加用户

@@ -77,6 +77,11 @@ public class User implements Serializable {
      */
     private UserAddress addressesList;
 
+    /**
+     * 用户角色
+     */
+    private String role;
+
 
     @Override
     public String toString() {
@@ -95,7 +100,16 @@ public class User implements Serializable {
                 ", hobbys='" + hobbys + '\'' +
                 ", gender='" + gender + '\'' +
                 ", addressesList=" + addressesList +
+                ", role='" + role + '\'' +
                 '}';
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public UserAddress getAddressesList() {

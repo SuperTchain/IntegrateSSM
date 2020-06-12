@@ -38,12 +38,12 @@ public class UserController {
 
 
     /**
-     * 查询所有用户信息
+     * 管理员查询所有用户信息
      *
      * @param model 封装的数据
      * @return 返回到用户列表页面
      */
-    @LogAnnotation(name = "查询所有用户",url = "/user/findAll")
+    @LogAnnotation(name = "管理员查询所有用户",url = "/user/findAll")
     @GetMapping(value = "/findAll")
     public String findAll(@RequestParam(name = "page",  defaultValue = "1") int page,
                           @RequestParam(name = "size",  defaultValue = "5") int size, Model model) {
@@ -56,6 +56,23 @@ public class UserController {
         return "admin/user-list";
     }
 
+
+    /**
+     * 博主查询所有用户信息
+     *
+     * @param model 封装的数据
+     * @return 返回到用户列表页面
+     */
+    @LogAnnotation(name = "博主查询所有用户",url = "/user/findAllByBlogAuthor")
+    @GetMapping(value = "/findAllByBlogAuthor")
+    public String findAllByBlogAuthor( Model model) {
+        List<User> list = userService.findAllByOther();
+        model.addAttribute("list", list);
+        logger.info("查询成功");
+        logger.info(list);
+        return "blogAuthor/userList";
+    }
+
     /**
      * 游客查询所有用户信息
      *
@@ -64,9 +81,8 @@ public class UserController {
      */
     @LogAnnotation(name = "游客查询所有用户",url = "/user/tFindAll")
     @GetMapping(value = "/tFindAll")
-    public String tFindAll(@RequestParam(name = "page",  defaultValue = "1") int page,
-                          @RequestParam(name = "size",  defaultValue = "5") int size, Model model) {
-        List<User> list = userService.findAll(page, size);
+    public String tFindAll(Model model) {
+        List<User> list = userService.findAllByOther();
         model.addAttribute("list", list);
         logger.info("查询成功");
         logger.info(list);
@@ -93,6 +109,25 @@ public class UserController {
         }
     }
 
+    /**
+     * 博主模糊查询成功
+     * @param name 博主姓名
+     * @param phonenumber 博主电话
+     * @param model 模型
+     * @return 博客界面
+     */
+    @PostMapping("/searchByBlogAuthor")
+    @LogAnnotation(name = "游客模糊查询博主",url = "/user/searchByBlogAuthor")
+    public String searchByBlogAuthor(String name,String phonenumber,Model model){
+        if (name == null && phonenumber == null) {
+            return "redirect:findAllByBlogAuthor";
+        } else {
+            List<User> list = userService.tSearch(name, phonenumber);
+            model.addAttribute("list", list);
+            logger.info("模糊查询成功");
+            return "blogAuthor/userList";
+        }
+    }
 
     /**
      * 来到添加用户界面
@@ -105,13 +140,24 @@ public class UserController {
     }
 
     /**
-     * 返回到主界面
+     * 返回到管理员主界面
      *
      * @return 用户列表界面
      */
     @GetMapping("/returnMain")
     public String toMain() {
         return "admin/main";
+    }
+
+
+    /**
+     * 返回到博主主界面
+     *
+     * @return 用户列表界面
+     */
+    @GetMapping("/returnBlogAuthor")
+    public String returnBlogAuthor() {
+        return "blogAuthor/main";
     }
 
     /**

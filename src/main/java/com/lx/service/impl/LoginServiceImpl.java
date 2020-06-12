@@ -28,4 +28,9 @@ public class LoginServiceImpl implements LoginService {
     public User findUserByName(String username) {
         return loginDao.findUserByName(username);
     }
+
+//    @Override
+//    public String findUserRoleByName(String role) {
+//        return loginDao.findUserRoleByName(role);
+//    }
 }

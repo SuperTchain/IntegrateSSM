@@ -38,8 +38,16 @@
                     return false;
                 }
 
+
+                <%--var str="${errmsg}"--%>
+                <%--//错误信息回显--%>
+                <%--if (str.length!=0){--%>
+                <%--    $("#errmsg").text("${errmsg}").css("backgroundColor", "red");--%>
+                <%--}--%>
+
                 //清除错误信息
                 $("#errorMsg").text("");
+                $("#errmsg").text("");
             })
         })
     </script>
@@ -51,6 +59,13 @@
     <br>
     <label>密码:</label>
     <input type="password" name="password" id="upassword">
+    <br>
+    <label>身份：</label>
+    <br>
+    用户 <input type="radio" value="0" name="role">
+    管理员<input type="radio" value="1" name="role">
+    <br>
+    <span style="color: red" id="errmsg" >${errmsg}</span>
     <br>
     <button type="submit" id="bt1">登录</button>
 </form>

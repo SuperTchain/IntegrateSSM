@@ -32,6 +32,7 @@
         <th>博客内容</th>
         <th>博客发表时间</th>
         <th>博客是否原创</th>
+        <th>博客作者</th>
     </tr>
     </thead>
 
@@ -45,6 +46,7 @@
             <td>${BlogList.blogContent}</td>
             <td>${BlogList.blogPublishTimeToStr}</td>
             <td>${BlogList.blogOriginToStr}</td>
+            <td>${BlogList.blogAuthor}</td>
             <td><a href="${pageContext.request.contextPath}/blog/view?id=${BlogList.id}">查看</a></td>
             <td><a href="${pageContext.request.contextPath}/blog/delete?id=${BlogList.id}">删除</a></td>
         </tr>

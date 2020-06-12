@@ -14,4 +14,6 @@ public interface LoginDao {
      * @return 用户信息
      */
     User findUserByName(String username);
+
+//    String findUserRoleByName(String role);
 }

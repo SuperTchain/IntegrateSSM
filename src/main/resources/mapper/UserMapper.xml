@@ -18,8 +18,9 @@
         <result column="emailaddress" property="emailaddress"></result>
         <result column="hobbys" property="hobbys"></result>
         <result column="gender" property="gender"></result>
+        <!--fetchType="lazy"-->
         <association property="addressesList" select="com.lx.dao.UserAddressDao.findAllAddress" column="id"
-                     fetchType="lazy">
+                     >
         </association>
     </resultMap>
 

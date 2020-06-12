@@ -21,13 +21,23 @@ public class UserServiceImpl implements UserService {
     UserDao userDao;
 
     /**
-     * 查询所有用户
+     * 管理员查询所有用户
      *
      * @return 返回一个list集合
      */
     @Override
     public List<User> findAll(int page, int size) {
         PageHelper.startPage(page, size);
+        return userDao.findAll();
+    }
+
+    /**
+     * 博主，游客查询所有用户
+     *
+     * @return 返回一个list集合
+     */
+    @Override
+    public List<User> findAllByOther() {
         return userDao.findAll();
     }
 
