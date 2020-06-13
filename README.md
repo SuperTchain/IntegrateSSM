@@ -1,6 +1,9 @@
-# IntegrateSSM
+# IntegrateSSM 
+
 My First SSM  pj
 At present, I have only built the most basic framework
+
+now I Use SSM+Maven+Jsp to write an interface-less style blog system
 
 ### 搭建最基本的SSM框架
 
@@ -325,6 +328,15 @@ mapper文件路径如下:
         <!--        配置扫描包名-->
         <property name="basePackage" value="com.lx.dao"/>
     </bean>
+```
+
+# 使用需知：
+
+```xml
+数据库(数据库名，用户名，密码，mysql版本驱动（我使用的是8.0.15）)
+日志文件生成地址（我生成地址 Info在F:/webpj1/info.txt Error在 F:/webpj1/error.txt）
+对于头像的显示，由于上传的图片存储在本地，数据库存储的只是路径，所以头像只能自己看的到，
+头像的上传需要进入tomcat安装目录，找到conf文件夹下的server.xml文件，在Host标签下添加<Context docBase="D:\File" path="/images" reloadable="true"/>其中，docbase是你存储图片的路径，path是数据库中存储的路径，同时，需要在项目的Run → Edit Configurations . . . → 勾选 Deploy applications configured in Tomcat instance
 ```
 
 
