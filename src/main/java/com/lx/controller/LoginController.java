@@ -43,7 +43,7 @@ public class LoginController {
                             String role,
                             HttpSession session) {
         //后端校验是否为空
-        if (username == null || password == null) {
+        if (username == null || password == null||role==null) {
             return "redirect:/login.jsp";
         } else {
             //查询出用户信息

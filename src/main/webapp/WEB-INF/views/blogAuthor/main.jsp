@@ -26,6 +26,7 @@
 <button onclick="location.href='${pageContext.request.contextPath}/blog/toAddBlog'">写博客</button>
 <button onclick="location.href='${pageContext.request.contextPath}/blog/findAllBlogByBlogAuthor'">查看博客</button>
 <button onclick="location.href='${pageContext.request.contextPath}/blog/toMyBlog'">我的博客</button>
+<button onclick="location.href='${pageContext.request.contextPath}/comments/toMyComments'">参与的评论</button>
 <button onclick="location.href='${pageContext.request.contextPath}/logout'">退出</button>
 <%--<form action="${pageContext.request.contextPath}/user/findAll" method="post">--%>
 <%--    <input type="submit" value="查看所有用户">--%>

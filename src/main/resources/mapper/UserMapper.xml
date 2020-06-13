@@ -67,7 +67,7 @@
     </insert>
     <!--模糊查询博主-->
     <select id="tSearch" resultMap="findAllMsg">
-        select name,userdesc,registdate,phonenumber,emailaddress,hobbys,gender from user
+        select id,name,userdesc,registdate,phonenumber,emailaddress,hobbys,gender from user
         <where>
             <if test="name!=null">
                 and name like '%${name}%'

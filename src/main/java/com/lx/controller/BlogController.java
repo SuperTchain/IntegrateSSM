@@ -2,7 +2,9 @@ package com.lx.controller;
 
 import com.lx.annotation.LogAnnotation;
 import com.lx.model.Blog;
+import com.lx.model.Comments;
 import com.lx.service.BlogService;
+import com.lx.service.CommentsService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +38,9 @@ public class BlogController {
     @Autowired
     private BlogService blogService;
 
+    @Autowired
+    private CommentsService commentsService;
+
     /**
      * 管理员查询所有博客列表
      *
@@ -66,6 +71,7 @@ public class BlogController {
         return "blogAuthor/blogList";
     }
 
+
     /**
      * 游客查看博客列表
      * @param model
@@ -81,7 +87,7 @@ public class BlogController {
     }
 
     /**
-     * 管理员查看博客信息
+     * 管理员查看博客详细信息
      *
      * @param id 博客ID
      * @return 博客信息界面
@@ -94,7 +100,7 @@ public class BlogController {
     }
 
     /**
-     * 博主查看博客信息
+     * 博主查看博客详细信息
      *
      * @param id 博客ID
      * @return 博客信息界面
@@ -102,13 +108,19 @@ public class BlogController {
     @GetMapping("/viewByBlogAuthor")
     public String viewByBlogAuthor(Integer id,Model model) {
         Blog blog = blogService.findBlogById(id);
+        //查询该文章下的所有评论
+        List<Comments> list = commentsService.findCommentsById(id);
+        if (list!=null){
+            logger.info("查询所有评论成功");
+        }
         model.addAttribute("Blog",blog);
+        model.addAttribute("comments",list);
         return "blogAuthor/viewBlog";
     }
 
 
     /**
-     * 游客查看博客信息
+     * 游客查看博客详细信息
      *
      * @param id 博客ID
      * @return 博客信息界面
@@ -162,7 +174,7 @@ public class BlogController {
     }
 
     /**
-     * 编辑博客
+     * 更新博客
      * @param blog 博客
      * @return 博客列表
      */
