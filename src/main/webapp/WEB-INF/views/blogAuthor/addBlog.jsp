@@ -16,6 +16,7 @@
 </head>
 <body>
 <form method="post" action="${pageContext.request.contextPath}/blog/addBlog" autocomplete="on" enctype="multipart/form-data">
+    <input type="hidden" name="blogAuthor" value="${username}">
     <label>博客标题:</label>
     <br>
     <input type="text" name="blogTitle" id="blogTitle">
@@ -26,10 +27,16 @@
     <br>
     <label>博客内容:</label>
     <br>
-    <textarea id="content" name="content" rows="8" cols="30" class="ckeditor">开始编辑</textarea></td>
+    <textarea id="blogContent" name="blogContent" rows="8" cols="30" class="ckeditor">开始编辑</textarea></td>
+    <br>
+    <label>是否原创</label>
+    <br>
+    原创<input type="radio" name="blogOrigin"  value="1">
+    转载<input type="radio" name="blogOrigin"  value="0">
+    <br>
     <button type="submit" id="bt1">提交</button>
 </form>
 <br>
-<a href="/user/returnMain">返回主界面</a>
+<a href="/user/returnBlogAuthor">返回主界面</a>
 </body>
 </html>

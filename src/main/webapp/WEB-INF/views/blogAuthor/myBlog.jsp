@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: ASUS
-  Date: 2020/6/12
-  Time: 11:02
+  Date: 2020/6/13
+  Time: 11:01
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page isELIgnored="false" %>
@@ -10,18 +10,12 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>博客列表界面</title>
+    <title>我的博客界面</title>
     <script type="text/javascript" src="../../../static/js/jquery-3.3.1/jquery-3.3.1.js"></script>
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/blog/searchByBlogAuthor" method="post">
-    <label>查询博客</label>
-    <br>
-    <input type="text" name="blogTitle" placeholder="请输入博客标题">
-    <br>
-    <input type="text" name="blogAuthor" placeholder="请输入博主名称">
-    <input type="submit" value="查询">
-</form>
+<%--<a href="${pageContext.request.contextPath}/blog/viewOriginByBlogAuthor?id=${BlogList.id}">查看原创</a>--%>
+<%--<a href="${pageContext.request.contextPath}/blog/viewCollectionByBlogAuthor?id=${BlogList.id}">查看收藏</a>--%>
 <table>
     <thead>
     <tr>
@@ -44,6 +38,7 @@
             <td>${BlogList.blogOriginToStr}</td>
             <td>${BlogList.blogAuthor}</td>
             <td><a href="${pageContext.request.contextPath}/blog/viewByBlogAuthor?id=${BlogList.id}">查看内容</a></td>
+            <td><a href="${pageContext.request.contextPath}/blog/toEditByBlogAuthor?id=${BlogList.id}">编辑博客</a></td>
         </tr>
     </c:forEach>
     </tbody>
@@ -52,4 +47,3 @@
 <a href="/user/returnBlogAuthor">返回主界面</a>
 </body>
 </html>
-

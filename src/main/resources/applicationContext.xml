@@ -20,7 +20,10 @@
     <!--    配置sqlSessionFactory工厂，注入数据源-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
+        <!--mapper文件-->
         <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+        <!--全局文件-->
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
         <!--加入pageHelper分页-->
         <property name="plugins">
             <array>

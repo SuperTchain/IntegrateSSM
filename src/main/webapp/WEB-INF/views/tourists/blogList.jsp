@@ -28,7 +28,6 @@
         <th>博客标题</th>
         <th>博客简介</th>
         <th>博主名称</th>
-        <th>博客内容</th>
         <th>博客发表时间</th>
         <th>博客是否原创</th>
     </tr>
@@ -40,10 +39,9 @@
             <td>${BlogList.blogTitle}</td>
             <td>${BlogList.blogDesc}</td>
             <td>${BlogList.blogAuthor}</td>
-            <td>${BlogList.blogContent}</td>
             <td>${BlogList.blogPublishTimeToStr}</td>
             <td>${BlogList.blogOriginToStr}</td>
-            <td><a href="${pageContext.request.contextPath}/blog/tView?id=${BlogList.id}">查看</a></td>
+            <td><a href="${pageContext.request.contextPath}/blog/tView?id=${BlogList.id}">查看内容</a></td>
         </tr>
     </c:forEach>
     </tbody>

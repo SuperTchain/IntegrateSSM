@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -119,6 +120,14 @@ public class BlogController {
         return "tourists/viewBlog";
     }
 
+    /**
+     * 跳转到添加博客界面
+     * @return 添加博客界面
+     */
+    @GetMapping("/toAddBlog")
+    public String toAddBlog(){
+        return "blogAuthor/addBlog";
+    }
 
     /**
      * 添加博客
@@ -128,12 +137,45 @@ public class BlogController {
      */
     @PostMapping("/addBlog")
     @LogAnnotation(name = "添加博客", url = "/blog/addBlog")
-    public String addBlog(HttpServletRequest request, String blogTitle, String blogDesc) {
+    public String addBlog(HttpServletRequest request,Blog blog) {
+        logger.info(blog);
         //获取ckeditor编辑的内容
-        String html = request.getParameter("content");
-        System.out.println(html + "  " + blogTitle + "  " + blogDesc);
-        return "redirect:/blog/findAllBlog";
+        String html = request.getParameter("blogContent");
+        logger.info(html);
+        Integer integer = blogService.addBlog(blog);
+        if (integer==1){
+            logger.info("添加成功");
+        }
+        return "redirect:/blog/findAllBlogByBlogAuthor";
     }
+
+    /**
+     * 跳转到修改博客界面
+     * @param model 模型
+     * @return 编辑博客界面
+     */
+    @GetMapping("/toEditByBlogAuthor")
+    public String toEditByBlogAuthor(Integer id,Model model){
+        Blog blogById = blogService.findBlogById(id);
+        model.addAttribute("Blog",blogById);
+        return "blogAuthor/editBlog";
+    }
+
+    /**
+     * 编辑博客
+     * @param blog 博客
+     * @return 博客列表
+     */
+    @PostMapping("/updateBlog")
+    @LogAnnotation(name = "博主修改博客",url = "/blog/updateBlog")
+    public String  updateBlog(Blog blog){
+        Integer integer = blogService.updateBlog(blog);
+        if (integer==1){
+            logger.info("更新成功");
+        }
+        return "redirect:/blog/findAllBlogByBlogAuthor";
+    }
+
 
     /**
      * 删除博客
@@ -213,5 +255,22 @@ public class BlogController {
             logger.info("模糊查询成功");
             return "blogAuthor/blogList";
         }
+    }
+
+
+    /**
+     * 跳转到我的博客界面
+     * @param model 模型
+     * @param session 会话
+     * @return 我的博客界面
+     */
+    @GetMapping("/toMyBlog")
+    public String toMyBlog(Model model, HttpSession session){
+        String blogAuthor= (String) session.getAttribute("username");
+        logger.info(blogAuthor);
+        List<Blog> list = blogService.findBlogByName(blogAuthor);
+        logger.info(list);
+        model.addAttribute("BlogList",list);
+        return "blogAuthor/myBlog";
     }
 }

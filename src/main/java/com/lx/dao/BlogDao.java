@@ -35,4 +35,24 @@ public interface BlogDao  {
      * @return 博客信息
      */
     Blog findBlogById(Integer id);
+
+    /**
+     * 添加博客
+     * @param blog 博客实体
+     */
+    Integer addBlog(Blog blog);
+
+    /**
+     * 更新博客
+     * @param blog 博客信息
+     * @return 更新结果
+     */
+    Integer updateBlog(Blog blog);
+
+    /**
+     * 根据名称查询博客列表
+     * @param blogAuthor 名称
+     * @return 博客列表
+     */
+    List<Blog> findBlogByName(String blogAuthor);
 }

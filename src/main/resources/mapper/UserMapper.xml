@@ -18,9 +18,8 @@
         <result column="emailaddress" property="emailaddress"></result>
         <result column="hobbys" property="hobbys"></result>
         <result column="gender" property="gender"></result>
-        <!--fetchType="lazy"-->
-        <association property="addressesList" select="com.lx.dao.UserAddressDao.findAllAddress" column="id"
-                     >
+        <!--fetchType="lazy" 懒加载-->
+        <association property="addressesList" select="com.lx.dao.UserAddressDao.findAllAddress" column="id">
         </association>
     </resultMap>
 
@@ -67,7 +66,6 @@
         insert into user (name,password,userdesc,phonenumber,emailaddress,hobbys,registdate,gender,img) values(#{name},#{password},#{userdesc},#{phonenumber},#{emailaddress},#{hobbys},now(),#{gender},#{img})
     </insert>
     <!--模糊查询博主-->
-    <!--模糊查询博客-->
     <select id="tSearch" resultMap="findAllMsg">
         select name,userdesc,registdate,phonenumber,emailaddress,hobbys,gender from user
         <where>

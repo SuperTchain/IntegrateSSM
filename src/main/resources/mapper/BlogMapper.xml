@@ -42,4 +42,17 @@
     <select id="findBlogById" resultMap="BaseResultMap">
         select <include refid="Base_Column_List"></include> from blog where id=#{id}
     </select>
+    <!--添加博客-->
+    <insert id="addBlog" parameterType="com.lx.model.Blog">
+        insert into blog(blogTitle, blogDesc, blogContent, blogPublishTime, blogOrigin, blogAuthor)
+        values(#{blogTitle},#{blogDesc},#{blogContent},now(),#{blogOrigin},#{blogAuthor})
+    </insert>
+    <!--更新博客-->
+    <update id="updateBlog" parameterType="com.lx.model.Blog">
+        update blog set blogTitle=#{blogTitle},blogDesc=#{blogDesc},blogContent=#{blogContent} where id=#{id}
+    </update>
+    <!--根据名称查询博客信息-->
+    <select id="findBlogByName" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"></include> from blog where blogAuthor=#{blogAuthor}
+    </select>
 </mapper>

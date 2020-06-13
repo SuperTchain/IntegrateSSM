@@ -15,6 +15,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.3.1/jquery-3.3.1.js"></script>
 </head>
 <body>
+<a href="/user/returnMain">返回主界面</a>
 <table>
     <thead>
     <tr>
@@ -39,6 +40,5 @@
     </c:forEach>
     </tbody>
 </table>
-<a href="/user/returnMain">返回主界面</a>
 </body>
 </html>

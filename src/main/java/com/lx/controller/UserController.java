@@ -72,6 +72,25 @@ public class UserController {
         logger.info(list);
         return "blogAuthor/userList";
     }
+    /**
+     * 博主模糊查询
+     * @param name 博主姓名
+     * @param phonenumber 博主电话
+     * @param model 模型
+     * @return 博客界面
+     */
+    @PostMapping("/searchByBlogAuthor")
+    @LogAnnotation(name = "博主模糊查询",url = "/user/searchByBlogAuthor")
+    public String searchByBlogAuthor(String name,String phonenumber,Model model){
+        if (name == null && phonenumber == null) {
+            return "redirect:findAllByBlogAuthor";
+        } else {
+            List<User> list = userService.tSearch(name, phonenumber);
+            model.addAttribute("list", list);
+            logger.info("模糊查询成功");
+            return "blogAuthor/userList";
+        }
+    }
 
     /**
      * 游客查询所有用户信息
@@ -90,7 +109,7 @@ public class UserController {
     }
 
     /**
-     * 游客模糊查询成功
+     * 游客模糊查询
      * @param name 博主姓名
      * @param phonenumber 博主电话
      * @param model 模型
@@ -109,25 +128,7 @@ public class UserController {
         }
     }
 
-    /**
-     * 博主模糊查询成功
-     * @param name 博主姓名
-     * @param phonenumber 博主电话
-     * @param model 模型
-     * @return 博客界面
-     */
-    @PostMapping("/searchByBlogAuthor")
-    @LogAnnotation(name = "游客模糊查询博主",url = "/user/searchByBlogAuthor")
-    public String searchByBlogAuthor(String name,String phonenumber,Model model){
-        if (name == null && phonenumber == null) {
-            return "redirect:findAllByBlogAuthor";
-        } else {
-            List<User> list = userService.tSearch(name, phonenumber);
-            model.addAttribute("list", list);
-            logger.info("模糊查询成功");
-            return "blogAuthor/userList";
-        }
-    }
+
 
     /**
      * 来到添加用户界面

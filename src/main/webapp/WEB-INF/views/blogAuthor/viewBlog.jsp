@@ -33,7 +33,7 @@
     <br>
     <label>博客是否原创:</label>
     <br>
-    <input type="text" name="blogOrigin" id="blogOrigin" value="${Blog.blogOrigin}" readonly="readonly">
+    <input type="text" name="blogOrigin" id="blogOrigin" value="${Blog.blogOriginToStr}" readonly="readonly">
     <br>
     <label>博客作者:</label>
     <br>

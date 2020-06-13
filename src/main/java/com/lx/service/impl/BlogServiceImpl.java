@@ -52,8 +52,42 @@ public class BlogServiceImpl implements BlogService {
         return blogDao.deleteById(id);
     }
 
+    /**
+     * 根据博客id查看博客信息
+     * @param id 博客id
+     * @return 博客
+     */
     @Override
     public Blog findBlogById(Integer id) {
         return blogDao.findBlogById(id);
+    }
+
+    /**
+     * 添加博客
+     * @param blog 博客实体
+     */
+    @Override
+    public Integer addBlog(Blog blog) {
+        return blogDao.addBlog(blog);
+    }
+
+    /**
+     * 添加博客
+     * @param blog 修改的博客信息
+     * @return 更新结果
+     */
+    @Override
+    public Integer updateBlog(Blog blog) {
+        return blogDao.updateBlog(blog);
+    }
+
+    /**
+     * 根据名称查询博客
+     * @param blogAuthor 名称
+     * @return 博客列表
+     */
+    @Override
+    public List<Blog> findBlogByName(String blogAuthor) {
+        return blogDao.findBlogByName(blogAuthor);
     }
 }
